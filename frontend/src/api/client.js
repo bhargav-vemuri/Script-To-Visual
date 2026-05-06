@@ -12,11 +12,10 @@ export async function analyzeScript(payload, title = '') {
   const formData = new FormData();
   
   if (typeof payload === 'string') {
-    // If text is provided, convert it to a File to satisfy backend upload requirement
-    const blob = new Blob([payload], { type: 'text/plain' });
-    formData.append('script', blob, 'script.txt');
+    // Backend supports raw text via req.body.scriptText
+    formData.append('scriptText', payload);
   } else {
-    // payload is already a File object
+    // payload is a File object
     formData.append('script', payload);
   }
 
