@@ -49,31 +49,10 @@ export default function UploadPage() {
     setStreamContent('');
 
     try {
-      const token = localStorage.getItem('token');
-      const headers = token ? { 'Authorization': `Bearer ${token}` } : {};
-
-      let body;
-      if (mode === 'file') {
-        body = new FormData();
-        body.append('script', file);
-        body.append('title', title || file.name.replace(/\.[^.]+$/, ''));
-      } else {
-        body = JSON.stringify({ scriptText, title: title || 'Untitled Script' });
-        headers['Content-Type'] = 'application/json';
-      }
-
-      const response = await fetch('/api/analyze', {
-        method: 'POST',
-        headers,
-        body,
-      });
-
-      if (!response.ok) {
-        const errData = await response.json().catch(() => ({}));
-        throw new Error(errData.error || `Server error: ${response.status}`);
-      }
-
-      const data = await response.json();
+      const payload = mode === 'file' ? file : scriptText;
+      const scriptTitle = title || (mode === 'file' ? file.name.replace(/\.[^.]+$/, '') : 'Untitled Script');
+      
+      const data = await analyzeScript(payload, scriptTitle);
       const finalAnalysis = data.analysis;
 
       if (finalAnalysis) {

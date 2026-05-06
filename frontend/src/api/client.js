@@ -4,13 +4,30 @@ const API_URL = import.meta.env.VITE_API_URL || '';
 const api = axios.create({ baseURL: `${API_URL}/api` });
 
 /**
- * Analyze a script — sends either FormData (PDF) or JSON (text).
- * @param {FormData|{scriptText:string, title?:string}} payload
+ * Analyze a script — ensures 'script' field is always a file for the backend.
+ * @param {File|string} payload - Either a File object or raw script text.
+ * @param {string} title - Optional title for the script.
  */
-export async function analyzeScript(payload) {
-  const isFormData = payload instanceof FormData;
-  const res = await api.post('/analyze', payload, {
-    headers: isFormData ? { 'Content-Type': 'multipart/form-data' } : {},
+export async function analyzeScript(payload, title = '') {
+  const formData = new FormData();
+  
+  if (typeof payload === 'string') {
+    // If text is provided, convert it to a File to satisfy backend upload requirement
+    const blob = new Blob([payload], { type: 'text/plain' });
+    formData.append('script', blob, 'script.txt');
+  } else {
+    // payload is already a File object
+    formData.append('script', payload);
+  }
+
+  if (title) {
+    formData.append('title', title);
+  }
+
+  const res = await api.post('/analyze', formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
   });
   return res.data;
 }
