@@ -30,6 +30,13 @@ export default function DashboardPage() {
     }
   }, [id]);
 
+  /* Page title */
+  useEffect(() => {
+    document.title = analysis?.title
+      ? `${analysis.title} — ScriptVision`
+      : 'Script Breakdown — ScriptVision';
+  }, [analysis?.title]);
+
   if (loading) {
     return (
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '60vh' }}>
@@ -99,9 +106,9 @@ export default function DashboardPage() {
                 key={key}
                 onClick={() => setView(key)}
                 style={{
-                  padding: '8px 14px', background: view === key ? 'rgba(124,58,237,0.2)' : 'transparent',
+                  padding: '8px 14px', background: view === key ? 'rgba(245,166,35,0.15)' : 'transparent',
                   border: 'none', cursor: 'pointer',
-                  color: view === key ? '#a78bfa' : 'var(--text-secondary)',
+                  color: view === key ? '#fde68a' : 'var(--text-secondary)',
                   transition: 'all 0.2s',
                 }}
                 title={key === 'list' ? 'List view' : 'Storyboard view'}
@@ -217,7 +224,7 @@ function getSummaryStats(scenes) {
   const totalIndividualShots = scenes.reduce((sum, s) => sum + (s.shot_division?.length || 0), 0);
   const allLocations = [...new Set(scenes.map(s => s.location).filter(Boolean))];
   return [
-    { label: 'Total Scenes', value: scenes.length, color: '#a78bfa' },
+    { label: 'Total Scenes', value: scenes.length, color: '#fde68a' },
     { label: 'Mood Tags', value: allMoods.length, color: '#fcd34d' },
     { label: 'Shot Types', value: allShots.length, color: '#5eead4' },
     { label: 'Total Shots', value: totalIndividualShots || allLocations.length, color: '#fb923c' },

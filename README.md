@@ -12,7 +12,7 @@ By leveraging state-of-the-art AI models, ScriptVision analyzes the emotional DN
 - **Shot-by-Shot Division**: Decomposes scenes into specific shots, complete with camera movement, angle, lens distortion, duration, and psychological purpose.
 - **Sound Design & Editing**: Generates detailed soundscapes (genre, tempo, instrumentation, reference tracks) and editorial rhythm (cut types, pacing notes, transitions) tailored to the scene's emotional weight.
 - **AI Storyboarding**: Integrates seamlessly with Hugging Face's `FLUX.1-schnell` model to generate high-fidelity, cinematic storyboard frames based on the script's visual style.
-- **Premium UI/UX**: A dark-mode, glassmorphism-inspired interface built with React, Vite, and Framer Motion, featuring dynamic loading overlays and cleanly tabbed data visualization.
+- **Premium UI/UX**: A glassmorphism-inspired interface built with React, Vite, and Framer Motion, featuring a custom **Amber Noir** cinematic color palette, dynamic loading overlays, and cleanly tabbed data visualization.
 
 ---
 
@@ -35,14 +35,14 @@ ScriptVision uses a robust modern web stack:
 
 ### 1. Prerequisites
 - Node.js (v18+)
-- MongoDB (running locally on `mongodb://localhost:27017/script-to-visual` or via Atlas)
+- MongoDB (running locally on `mongodb://localhost:27017/stv` or via Atlas)
 - API Keys for Groq and Hugging Face.
 
 ### 2. Environment Variables
 Create a `.env` file in the `/backend` directory:
 ```env
 PORT=5000
-MONGODB_URI=mongodb://localhost:27017/script-to-visual
+MONGODB_URI=mongodb://localhost:27017/stv
 GROQ_API_KEY=your_groq_api_key_here
 HF_API_KEY=your_huggingface_api_key_here
 JWT_SECRET=your_jwt_secret_here
@@ -69,10 +69,15 @@ npm run dev
 3. Paste a block of script text or upload a PDF.
 4. Watch as the engine parses the scene and breaks down the cinematography, sound, and editing choices!
 
+### 5. Deployment (Production)
+ScriptVision is fully configured for cloud deployment:
+- **Frontend**: Designed to be easily deployed on **Vercel** (`npm run build`). Just set `VITE_API_URL` in the Vercel environment variables to point to your backend.
+- **Backend**: Can be hosted on platforms like **Render**. The architecture handles long-running LLM inferences and offloads image generation to the background so free-tier API limits and timeouts are avoided.
+
 ---
 
 ## 📖 The Magic of Cinema
-Built for the storytellers. Whether drawing inspiration from the chaotic raw energy of *Fight Club*, the fierce intensity of *Aravinda Sametha*, the warmth of *Hi Nanna*, or the relentless grit of *12th Fail*, this tool is designed to elevate the universal language of film.
+Built for the storytellers. Whether drawing inspiration from the chaotic raw energy of *Fight Club*, the fierce intensity of *Aravinda Sametha*, the warmth of *Hi Nanna*, or the patriotic spirit of *Major*, this tool is designed to elevate the universal language of film.
 
 ---
 *Crafted with ❤️ for filmmakers.*

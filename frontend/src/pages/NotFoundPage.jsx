@@ -1,8 +1,10 @@
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Film, Home } from 'lucide-react';
 
 export default function NotFoundPage() {
+  useEffect(() => { document.title = '404 — ScriptVision'; }, []);
   return (
     <div style={{
       minHeight: 'calc(100vh - 64px)',

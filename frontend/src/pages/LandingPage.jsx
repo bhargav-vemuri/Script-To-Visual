@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Film, Zap, Camera, Palette, Eye, ChevronRight, Star } from 'lucide-react';
@@ -5,29 +6,29 @@ import { Film, Zap, Camera, Palette, Eye, ChevronRight, Star } from 'lucide-reac
 const features = [
   {
     icon: Film,
-    color: '#7c3aed',
-    bg: 'rgba(124,58,237,0.12)',
+    color: '#f5a623',
+    bg: 'rgba(245,166,35,0.12)',
     title: 'Scene Breakdown',
-    desc: 'Auto-detect every scene with location, time, and rich description extracted by GPT-4o.',
+    desc: 'Auto-detect every scene with location, time, and rich description powered by Groq AI.',
   },
   {
     icon: Zap,
-    color: '#db2777',
-    bg: 'rgba(219,39,119,0.12)',
+    color: '#d95f2b',
+    bg: 'rgba(217,95,43,0.12)',
     title: 'Mood Detection',
     desc: 'Understand the emotional tone of each scene with multi-tag mood analysis.',
   },
   {
     icon: Camera,
-    color: '#5b5bf6',
-    bg: 'rgba(91,91,246,0.12)',
+    color: '#d97706',
+    bg: 'rgba(217,119,6,0.12)',
     title: 'Camera Suggestions',
     desc: 'Get shot types, movements, and angles tailored to each scene\'s dramatic needs.',
   },
   {
     icon: Palette,
-    color: '#f59e0b',
-    bg: 'rgba(245,158,11,0.12)',
+    color: '#fbbf24',
+    bg: 'rgba(251,191,36,0.12)',
     title: 'Visual Style',
     desc: 'Lighting recommendations, color palettes, and cinematic style references per scene.',
   },
@@ -57,6 +58,7 @@ const fadeUp = {
 };
 
 export default function LandingPage() {
+  useEffect(() => { document.title = 'ScriptVision — AI Cinematic Breakdown'; }, []);
   return (
     <div className="hero-bg grain" style={{ minHeight: '100vh' }}>
       {/* ── Hero ─────────────────────────────────────────────────────────── */}
@@ -68,12 +70,12 @@ export default function LandingPage() {
           style={{
             display: 'inline-flex', alignItems: 'center', gap: 8,
             padding: '6px 16px', borderRadius: 999,
-            background: 'rgba(124,58,237,0.15)',
-            border: '1px solid rgba(124,58,237,0.35)',
+            background: 'rgba(245,166,35,0.15)',
+            border: '1px solid rgba(245,166,35,0.35)',
             marginBottom: 28,
           }}
         >
-          <span style={{ fontSize: '0.78rem', color: '#a78bfa', fontWeight: 600 }}>✦ Powered by GPT-4o</span>
+          <span style={{ fontSize: '0.78rem', color: '#fde68a', fontWeight: 600 }}>✦ AI-Powered Cinematic Breakdown</span>
         </motion.div>
 
         <motion.h1
@@ -121,7 +123,7 @@ export default function LandingPage() {
           style={{ display: 'flex', gap: 24, justifyContent: 'center', flexWrap: 'wrap', marginTop: 56 }}
         >
           {[
-            { value: 'GPT-4o', label: 'AI Engine' },
+            { value: 'Groq LPU™', label: 'AI Engine' },
             { value: '< 30s', label: 'Analysis Time' },
             { value: '6 Dimensions', label: 'Per Scene' },
           ].map(({ value, label }) => (
@@ -153,7 +155,7 @@ export default function LandingPage() {
           transition={{ duration: 0.5 }}
           style={{ textAlign: 'center', marginBottom: 56 }}
         >
-          <p style={{ color: '#a78bfa', fontWeight: 600, fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 12 }}>
+          <p style={{ color: '#fde68a', fontWeight: 600, fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 12 }}>
             What You Get
           </p>
           <h2 className="font-grotesk" style={{ fontSize: 'clamp(1.8rem, 3vw, 2.6rem)', fontWeight: 700 }}>
@@ -203,8 +205,8 @@ export default function LandingPage() {
           style={{
             maxWidth: '700px', margin: '0 auto', textAlign: 'center',
             padding: '56px 40px',
-            background: 'linear-gradient(135deg, rgba(124,58,237,0.15), rgba(91,91,246,0.1))',
-            border: '1px solid rgba(124,58,237,0.3)',
+            background: 'linear-gradient(135deg, rgba(245,166,35,0.12), rgba(217,119,6,0.08))',
+            border: '1px solid rgba(245,166,35,0.25)',
             borderRadius: 24,
           }}
         >

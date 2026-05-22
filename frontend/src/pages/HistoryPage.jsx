@@ -19,6 +19,8 @@ export default function HistoryPage() {
       .finally(() => setLoading(false));
   }, []);
 
+  useEffect(() => { document.title = 'History — ScriptVision'; }, []);
+
   async function handleDelete(id, e) {
     e.stopPropagation();
     setDeletingId(id);
@@ -44,11 +46,11 @@ export default function HistoryPage() {
         <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 8 }}>
           <div style={{
             width: 44, height: 44, borderRadius: 12,
-            background: 'linear-gradient(135deg, rgba(124,58,237,0.3), rgba(91,91,246,0.3))',
-            border: '1px solid rgba(124,58,237,0.4)',
+            background: 'linear-gradient(135deg, rgba(245,166,35,0.25), rgba(217,119,6,0.25))',
+            border: '1px solid rgba(245,166,35,0.4)',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
           }}>
-            <History size={20} color="#a78bfa" />
+            <History size={20} color="#fde68a" />
           </div>
           <div>
             <h1 className="font-grotesk" style={{ fontSize: '1.8rem', fontWeight: 700 }}>Analysis History</h1>
@@ -93,11 +95,11 @@ export default function HistoryPage() {
         >
           <div style={{
             width: 72, height: 72, borderRadius: '50%',
-            background: 'rgba(124,58,237,0.12)', border: '1px solid rgba(124,58,237,0.3)',
+            background: 'rgba(245,166,35,0.12)', border: '1px solid rgba(245,166,35,0.3)',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             margin: '0 auto 20px',
           }}>
-            <Film size={30} color="#a78bfa" />
+            <Film size={30} color="#fde68a" />
           </div>
           <h2 className="font-grotesk" style={{ fontSize: '1.3rem', fontWeight: 600, marginBottom: 10 }}>
             No analyses yet
@@ -139,13 +141,13 @@ export default function HistoryPage() {
                 {/* Scene count badge */}
                 <div style={{
                   minWidth: 52, height: 52, borderRadius: 12,
-                  background: 'linear-gradient(135deg, rgba(124,58,237,0.2), rgba(91,91,246,0.2))',
-                  border: '1px solid rgba(124,58,237,0.3)',
+                  background: 'linear-gradient(135deg, rgba(245,166,35,0.18), rgba(217,119,6,0.18))',
+                  border: '1px solid rgba(245,166,35,0.3)',
                   display: 'flex', flexDirection: 'column',
                   alignItems: 'center', justifyContent: 'center',
                   flexShrink: 0,
                 }}>
-                  <span style={{ fontSize: '1.1rem', fontWeight: 800, color: '#a78bfa', lineHeight: 1 }}>
+                  <span style={{ fontSize: '1.1rem', fontWeight: 800, color: '#fde68a', lineHeight: 1 }}>
                     {a.scenes?.length ?? '?'}
                   </span>
                   <span style={{ fontSize: '0.6rem', color: 'var(--text-secondary)', letterSpacing: '0.06em' }}>
@@ -175,7 +177,7 @@ export default function HistoryPage() {
                   {a.scenes?.[0]?.mood?.length > 0 && (
                     <div style={{ display: 'flex', gap: 5, marginTop: 8, flexWrap: 'wrap' }}>
                       {[...new Set(a.scenes.flatMap(s => s.mood))].slice(0, 4).map((m, idx) => (
-                        <span key={idx} className="chip chip-purple" style={{ fontSize: '0.68rem' }}>{m}</span>
+                        <span key={idx} className="chip chip-amber" style={{ fontSize: '0.68rem' }}>{m}</span>
                       ))}
                     </div>
                   )}

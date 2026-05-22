@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Film, User, Mail, Lock, ArrowRight, AlertCircle } from 'lucide-react';
@@ -13,6 +13,10 @@ export default function AuthPage() {
   const [error, setError] = useState('');
   const { login } = useAuth();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    document.title = isLogin ? 'Sign In — ScriptVision' : 'Create Account — ScriptVision';
+  }, [isLogin]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -44,10 +48,10 @@ export default function AuthPage() {
         <div style={{ textAlign: 'center', marginBottom: 32 }}>
           <div style={{
             width: 56, height: 56, borderRadius: 16,
-            background: 'linear-gradient(135deg, #7c3aed, #5b5bf6)',
+            background: 'linear-gradient(135deg, #f5a623, #d97706)',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             margin: '0 auto 16px',
-            boxShadow: '0 0 30px rgba(124,58,237,0.4)',
+            boxShadow: '0 0 30px rgba(245,166,35,0.4)',
           }}>
             <Film size={28} color="#fff" />
           </div>
@@ -86,7 +90,10 @@ export default function AuthPage() {
                     width: '100%', padding: '10px 14px 10px 40px',
                     background: 'var(--bg-card2)', border: '1px solid var(--border)',
                     borderRadius: 10, color: 'var(--text-primary)', outline: 'none',
+                    transition: 'border-color 0.2s',
                   }}
+                  onFocus={e => e.target.style.borderColor = '#d97706'}
+                  onBlur={e => e.target.style.borderColor = 'var(--border)'}
                 />
               </div>
             </div>
@@ -105,7 +112,10 @@ export default function AuthPage() {
                   width: '100%', padding: '10px 14px 10px 40px',
                   background: 'var(--bg-card2)', border: '1px solid var(--border)',
                   borderRadius: 10, color: 'var(--text-primary)', outline: 'none',
+                  transition: 'border-color 0.2s',
                 }}
+                onFocus={e => e.target.style.borderColor = '#d97706'}
+                onBlur={e => e.target.style.borderColor = 'var(--border)'}
               />
             </div>
           </div>
@@ -123,7 +133,10 @@ export default function AuthPage() {
                   width: '100%', padding: '10px 14px 10px 40px',
                   background: 'var(--bg-card2)', border: '1px solid var(--border)',
                   borderRadius: 10, color: 'var(--text-primary)', outline: 'none',
+                  transition: 'border-color 0.2s',
                 }}
+                onFocus={e => e.target.style.borderColor = '#d97706'}
+                onBlur={e => e.target.style.borderColor = 'var(--border)'}
               />
             </div>
           </div>
@@ -138,7 +151,7 @@ export default function AuthPage() {
           {isLogin ? "Don't have an account? " : "Already have an account? "}
           <button
             onClick={() => { setIsLogin(!isLogin); setError(''); }}
-            style={{ background: 'none', border: 'none', color: '#a78bfa', fontWeight: 600, cursor: 'pointer', padding: 0 }}
+            style={{ background: 'none', border: 'none', color: '#fde68a', fontWeight: 600, cursor: 'pointer', padding: 0 }}
           >
             {isLogin ? 'Sign up' : 'Sign in'}
           </button>

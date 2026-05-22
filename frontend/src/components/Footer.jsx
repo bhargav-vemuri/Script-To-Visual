@@ -12,7 +12,7 @@ export default function Footer() {
       {/* Glowing top border */}
       <div style={{
         height: 1, width: '100%',
-        background: 'linear-gradient(90deg, transparent, rgba(124,58,237,0.5), rgba(91,91,246,0.5), transparent)'
+        background: 'linear-gradient(90deg, transparent, rgba(245,166,35,0.5), rgba(217,119,6,0.5), transparent)'
       }} />
 
       <div style={{
@@ -25,9 +25,9 @@ export default function Footer() {
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
             <div style={{
               width: 34, height: 34, borderRadius: 10,
-              background: 'linear-gradient(135deg, #7c3aed, #5b5bf6)',
+              background: 'linear-gradient(135deg, #c8922a, #9a6f1a)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
-              boxShadow: '0 0 20px rgba(124,58,237,0.3)'
+              boxShadow: '0 0 20px rgba(200,146,42,0.25)'
             }}>
               <Clapperboard size={18} color="#fff" />
             </div>
@@ -42,7 +42,7 @@ export default function Footer() {
                 border: '1px solid var(--border)', display: 'flex', alignItems: 'center', justifyContent: 'center',
                 color: 'var(--text-secondary)', transition: 'all 0.2s', textDecoration: 'none'
               }}
-              onMouseEnter={e => { e.currentTarget.style.color = '#a78bfa'; e.currentTarget.style.borderColor = '#a78bfa'; }}
+              onMouseEnter={e => { e.currentTarget.style.color = '#e5c97d'; e.currentTarget.style.borderColor = '#9a7230'; }}
               onMouseLeave={e => { e.currentTarget.style.color = 'var(--text-secondary)'; e.currentTarget.style.borderColor = 'var(--border)'; }}
               >
                 <Icon size={14} />
@@ -54,10 +54,10 @@ export default function Footer() {
         {/* Column 2: The Magic of Cinema */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
           <h4 className="font-grotesk" style={{ color: 'var(--text-primary)', fontSize: '0.95rem', fontWeight: 600, letterSpacing: '0.05em', textTransform: 'uppercase', marginBottom: 2 }}>
-            <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}><Film size={14} color="#a78bfa" /> The Magic of Cinema</span>
+            <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}><Film size={14} color="#c8922a" /> The Magic of Cinema</span>
           </h4>
           <p style={{ color: 'var(--text-secondary)', fontSize: '0.8rem', lineHeight: 1.65, fontStyle: 'italic' }}>
-            Cinema is a universal language. From the chaotic, raw energy of <span style={{ color: '#c4b5fd', fontWeight: 500 }}>Fight Club</span> to the tender, poetic love of <span style={{ color: '#c4b5fd', fontWeight: 500 }}>Sita Ramam</span>. It is the fierce intensity of <span style={{ color: '#c4b5fd', fontWeight: 500 }}>Aravinda Sametha</span>, the hilarious vulnerabilities of <span style={{ color: '#c4b5fd', fontWeight: 500 }}>Ante Sundaraniki</span>, the emotional warmth of <span style={{ color: '#c4b5fd', fontWeight: 500 }}>Hi Nanna</span>, and the relentless grit of <span style={{ color: '#c4b5fd', fontWeight: 500 }}>12th Fail</span>.
+            Cinema is a universal language. From the chaotic, raw energy of <span style={{ color: '#d4b483', fontWeight: 500 }}>Fight Club</span> to the tender, poetic love of <span style={{ color: '#d4b483', fontWeight: 500 }}>Sita Ramam</span>. It is the fierce intensity of <span style={{ color: '#d4b483', fontWeight: 500 }}>Aravinda Sametha</span>, the hilarious vulnerabilities of <span style={{ color: '#d4b483', fontWeight: 500 }}>Ante Sundaraniki</span>, the emotional warmth of <span style={{ color: '#d4b483', fontWeight: 500 }}>Hi Nanna</span>, and the patriotic spirit of <span style={{ color: '#d4b483', fontWeight: 500 }}>Major</span>.
             <br/><br/>
             Whether it's Hollywood framing or Tollywood mass storytelling, cinema connects our shared human experience. We built this tool for the storytellers who keep that magic alive.
           </p>
@@ -72,7 +72,7 @@ export default function Footer() {
               <Link key={label} to={path} style={{
                 color: 'var(--text-secondary)', textDecoration: 'none', fontSize: '0.88rem', transition: 'color 0.2s', width: 'fit-content'
               }}
-              onMouseEnter={e => e.currentTarget.style.color = '#a78bfa'}
+              onMouseEnter={e => e.currentTarget.style.color = '#e5c97d'}
               onMouseLeave={e => e.currentTarget.style.color = 'var(--text-secondary)'}
               >
                 {label}
@@ -111,7 +111,7 @@ export default function Footer() {
       {/* Subtle background glow */}
       <div style={{
         position: 'absolute', bottom: -100, right: -100, width: 300, height: 300,
-        background: 'radial-gradient(circle, rgba(124,58,237,0.05) 0%, transparent 70%)', pointerEvents: 'none'
+        background: 'radial-gradient(circle, rgba(200,146,42,0.04) 0%, transparent 70%)', pointerEvents: 'none'
       }} />
     </footer>
   );

@@ -1,7 +1,9 @@
+import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { BookOpen, Code, Terminal, Sparkles } from 'lucide-react';
 
 export default function DocsPage() {
+  useEffect(() => { document.title = 'Docs — ScriptVision'; }, []);
   return (
     <div style={{ minHeight: 'calc(100vh - 64px)', padding: '60px 24px' }}>
       <div style={{ maxWidth: '800px', margin: '0 auto' }}>
@@ -29,8 +31,8 @@ export default function DocsPage() {
           style={{ padding: '32px', marginBottom: 32 }}
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 24 }}>
-            <div style={{ width: 40, height: 40, borderRadius: 10, background: 'rgba(124,58,237,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <Code size={20} color="#a78bfa" />
+            <div style={{ width: 40, height: 40, borderRadius: 10, background: 'rgba(245,166,35,0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <Code size={20} color="#fde68a" />
             </div>
             <h2 className="font-grotesk" style={{ fontSize: '1.4rem', fontWeight: 700, color: 'var(--text-primary)' }}>API Reference</h2>
           </div>

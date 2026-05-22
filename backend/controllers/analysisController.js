@@ -268,30 +268,22 @@ async function advancedAnalyze(req, res) {
     try {
       console.log(`Processing scene ${i + 1}/${rawScenes.length}...`);
       
-      // 1. LLM Breakdown using the advanced Groq prompt
+      // LLM Breakdown using the advanced Groq prompt
       const scenesFromLlm = await analyzeScript(rawScenes[i]);
       const sceneData = Array.isArray(scenesFromLlm) ? scenesFromLlm[0] : scenesFromLlm;
 
       if (!sceneData) continue;
 
-      // 2. Prompt Enhancement
-      const firstShot = sceneData.shots && sceneData.shots[0] ? sceneData.shots[0] : null;
-      const enhancedPrompt = enhancePrompt(sceneData, firstShot);
-
-      // 3. Image Generation
-      const imageUrl = await hfGenerateImage(enhancedPrompt);
-
-      sceneData.imageUrl = imageUrl;
+      // Assign scene number (image is generated on-demand from the frontend)
       sceneData.scene_number = i + 1;
       processedScenes.push(sceneData);
 
     } catch (err) {
       console.error(`[ERROR] Scene ${i + 1} failed:`, err.message);
-      // Add a placeholder or skip? skipping for now to keep it clean
     }
   }
 
-  // 4. Persistence
+  // Persist first so we have an ID, then generate images in background
   let analysis = { 
     _id: `temp_${Date.now()}`, 
     title, 
@@ -310,6 +302,26 @@ async function advancedAnalyze(req, res) {
       if (req.user && req.user.userId) payload.userId = req.user.userId;
       const saved = await Analysis.create(payload);
       analysis = saved.toObject();
+
+      // Generate storyboard images in background (non-blocking)
+      const analysisId = saved._id;
+      (async () => {
+        for (let i = 0; i < processedScenes.length; i++) {
+          try {
+            const scene = processedScenes[i];
+            const firstShot = scene.shots && scene.shots[0] ? scene.shots[0] : null;
+            const enhancedPrompt = enhancePrompt(scene, firstShot);
+            const imageUrl = await hfGenerateImage(enhancedPrompt);
+            await Analysis.findOneAndUpdate(
+              { _id: analysisId, 'scenes.scene_number': scene.scene_number },
+              { $set: { 'scenes.$.imageUrl': imageUrl } }
+            );
+          } catch (imgErr) {
+            console.warn(`[WARN] Image gen failed for scene ${i + 1}:`, imgErr.message);
+          }
+        }
+      })();
+
     } catch (dbErr) {
       console.warn('[WARN] Could not save analysis:', dbErr.message);
     }

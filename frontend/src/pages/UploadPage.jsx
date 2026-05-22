@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useDropzone } from 'react-dropzone';
@@ -10,12 +10,14 @@ const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10 MB
 
 export default function UploadPage() {
   const navigate = useNavigate();
-  const [mode, setMode] = useState('file'); // 'file' | 'text'
+  const [mode, setMode] = useState('file');
   const [file, setFile] = useState(null);
   const [scriptText, setScriptText] = useState('');
   const [title, setTitle] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+
+  useEffect(() => { document.title = 'Analyze Script — ScriptVision'; }, []);
 
   /* ── Dropzone ─────────────────────────────────────────────────────────── */
   const onDrop = useCallback((accepted, rejected) => {
@@ -82,10 +84,10 @@ export default function UploadPage() {
           <div style={{ textAlign: 'center', marginBottom: 40 }}>
             <div style={{
               width: 60, height: 60, borderRadius: 16,
-              background: 'linear-gradient(135deg, #7c3aed, #5b5bf6)',
+              background: 'linear-gradient(135deg, #f5a623, #d97706)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               margin: '0 auto 20px',
-              boxShadow: '0 0 30px rgba(124,58,237,0.4)',
+              boxShadow: '0 0 30px rgba(245,166,35,0.4)',
             }}>
               <Clapperboard size={28} color="#fff" />
             </div>
@@ -116,7 +118,7 @@ export default function UploadPage() {
                     borderRadius: 10, color: 'var(--text-primary)', fontSize: '0.9rem',
                     outline: 'none', transition: 'border-color 0.2s',
                   }}
-                  onFocus={e => e.target.style.borderColor = '#7c3aed'}
+                  onFocus={e => e.target.style.borderColor = '#d97706'}
                   onBlur={e => e.target.style.borderColor = 'var(--border)'}
                 />
               </div>
@@ -132,9 +134,9 @@ export default function UploadPage() {
                       flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center',
                       gap: 8, padding: '10px',
                       borderRadius: 10, border: '1px solid',
-                      borderColor: mode === key ? '#7c3aed' : 'var(--border)',
-                      background: mode === key ? 'rgba(124,58,237,0.12)' : 'transparent',
-                      color: mode === key ? '#a78bfa' : 'var(--text-secondary)',
+                      borderColor: mode === key ? '#d97706' : 'var(--border)',
+                      background: mode === key ? 'rgba(217,119,6,0.12)' : 'transparent',
+                      color: mode === key ? '#fde68a' : 'var(--text-secondary)',
                       cursor: 'pointer', fontSize: '0.88rem', fontWeight: 500,
                       transition: 'all 0.2s',
                     }}
@@ -153,12 +155,12 @@ export default function UploadPage() {
                       {...getRootProps()}
                       id="dropzone"
                       style={{
-                        border: `2px dashed ${isDragActive ? '#7c3aed' : file ? '#5b5bf6' : 'var(--border)'}`,
+                        border: `2px dashed ${isDragActive ? '#d97706' : file ? '#f5a623' : 'var(--border)'}`,
                         borderRadius: 14,
                         padding: '48px 24px',
                         textAlign: 'center',
                         cursor: 'pointer',
-                        background: isDragActive ? 'rgba(124,58,237,0.08)' : file ? 'rgba(91,91,246,0.06)' : 'var(--bg-card2)',
+                        background: isDragActive ? 'rgba(245,166,35,0.08)' : file ? 'rgba(245,166,35,0.05)' : 'var(--bg-card2)',
                         transition: 'all 0.25s',
                       }}
                     >
@@ -168,11 +170,11 @@ export default function UploadPage() {
                         <div>
                           <div style={{
                             width: 52, height: 52, borderRadius: 12,
-                            background: 'rgba(91,91,246,0.2)', border: '1px solid rgba(91,91,246,0.4)',
+                            background: 'rgba(245,166,35,0.15)', border: '1px solid rgba(245,166,35,0.4)',
                             display: 'flex', alignItems: 'center', justifyContent: 'center',
                             margin: '0 auto 12px',
                           }}>
-                            <FileText size={24} color="#5b5bf6" />
+                            <FileText size={24} color="#f5a623" />
                           </div>
                           <p style={{ fontWeight: 600, marginBottom: 4, color: 'var(--text-primary)' }}>{file.name}</p>
                           <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', marginBottom: 12 }}>
@@ -192,7 +194,7 @@ export default function UploadPage() {
                         </div>
                       ) : (
                         <>
-                          <UploadCloud size={40} color={isDragActive ? '#7c3aed' : 'var(--text-secondary)'} style={{ margin: '0 auto 16px' }} />
+                          <UploadCloud size={40} color={isDragActive ? '#d97706' : 'var(--text-secondary)'} style={{ margin: '0 auto 16px' }} />
                           <p style={{ fontWeight: 600, marginBottom: 6 }}>
                             {isDragActive ? 'Drop it here!' : 'Drag & drop your script'}
                           </p>
@@ -218,7 +220,7 @@ export default function UploadPage() {
                         fontFamily: 'inherit', lineHeight: 1.65, resize: 'vertical',
                         outline: 'none', transition: 'border-color 0.2s',
                       }}
-                      onFocus={e => e.target.style.borderColor = '#7c3aed'}
+                      onFocus={e => e.target.style.borderColor = '#d97706'}
                       onBlur={e => e.target.style.borderColor = 'var(--border)'}
                     />
                     <p style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', marginTop: 8, textAlign: 'right' }}>

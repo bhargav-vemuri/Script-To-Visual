@@ -43,7 +43,7 @@ export default function LoadingOverlay({ streamContent = '' }) {
       style={{
         position: 'fixed',
         inset: 0,
-        background: 'rgba(5,5,8,0.96)',
+        background: 'rgba(8,7,10,0.96)',
         backdropFilter: 'blur(16px)',
         zIndex: 1000,
         display: 'flex',
@@ -60,7 +60,7 @@ export default function LoadingOverlay({ streamContent = '' }) {
           position: 'absolute',
           inset: -16,
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(124,58,237,0.2) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(245,166,35,0.2) 0%, transparent 70%)',
           filter: 'blur(8px)',
         }} />
 
@@ -73,7 +73,7 @@ export default function LoadingOverlay({ streamContent = '' }) {
             inset: 0,
             borderRadius: '50%',
             padding: 3,
-            background: 'conic-gradient(from 0deg, transparent 0%, #7c3aed 40%, #5b5bf6 70%, transparent 100%)',
+            background: 'conic-gradient(from 0deg, transparent 0%, #f5a623 40%, #d97706 70%, transparent 100%)',
             WebkitMask: 'radial-gradient(farthest-side, transparent calc(100% - 3px), white calc(100% - 3px))',
             mask: 'radial-gradient(farthest-side, transparent calc(100% - 3px), white calc(100% - 3px))',
           }}
@@ -87,7 +87,7 @@ export default function LoadingOverlay({ streamContent = '' }) {
             position: 'absolute',
             inset: 6,
             borderRadius: '50%',
-            border: '1.5px dashed rgba(124,58,237,0.3)',
+            border: '1.5px dashed rgba(245,166,35,0.3)',
           }}
         />
 
@@ -97,16 +97,16 @@ export default function LoadingOverlay({ streamContent = '' }) {
           transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
           style={{
             width: 72, height: 72,
-            background: 'linear-gradient(135deg, rgba(124,58,237,0.35), rgba(91,91,246,0.35))',
-            border: '1.5px solid rgba(124,58,237,0.55)',
+            background: 'linear-gradient(135deg, rgba(245,166,35,0.25), rgba(217,119,6,0.25))',
+            border: '1.5px solid rgba(245,166,35,0.5)',
             borderRadius: '50%',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            boxShadow: '0 0 24px rgba(124,58,237,0.3)',
+            boxShadow: '0 0 24px rgba(245,166,35,0.3)',
             position: 'relative',
             zIndex: 1,
           }}
         >
-          <Clapperboard size={32} color="#a78bfa" />
+          <Clapperboard size={32} color="#fde68a" />
         </motion.div>
       </div>
 
@@ -135,7 +135,7 @@ export default function LoadingOverlay({ streamContent = '' }) {
           <div
             ref={contentRef}
             style={{
-              background: '#0a0a12',
+              background: 'var(--bg-card)',
               border: '1px solid var(--border)',
               borderRadius: 12,
               padding: 16,
@@ -170,7 +170,7 @@ export default function LoadingOverlay({ streamContent = '' }) {
               transition={{ duration: 1.1, repeat: Infinity, delay: i * 0.18, ease: 'easeInOut' }}
               style={{
                 width: 9, height: 9, borderRadius: '50%',
-                background: i === 1 ? '#5b5bf6' : '#7c3aed',
+                background: i === 1 ? '#d97706' : '#f5a623',
               }}
             />
           ))}
