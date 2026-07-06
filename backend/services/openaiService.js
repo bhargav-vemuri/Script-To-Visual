@@ -122,10 +122,6 @@ async function analyzeScript(scriptText) {
   return parsed.scenes || [];
 }
 
-async function generateStoryboard(prompt) {
-  throw new Error("Storyboard generation is not supported with the Groq API. Please switch back to an OpenAI key to use DALL-E 3.");
-}
-
 /**
  * Streaming version — returns the Groq stream object for SSE piping.
  */
@@ -150,4 +146,4 @@ async function analyzeScriptStream(scriptText) {
   return stream;
 }
 
-module.exports = { analyzeScript, generateStoryboard, analyzeScriptStream };
+module.exports = { analyzeScript, analyzeScriptStream };

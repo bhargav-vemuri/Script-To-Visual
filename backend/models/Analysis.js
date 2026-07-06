@@ -69,7 +69,7 @@ const AnalysisSchema = new mongoose.Schema(
     title: { type: String, default: 'Untitled Script' },
     scriptText: { type: String, required: true },
     scenes: [SceneSchema],
-    userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+    userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', index: true },
   },
   { timestamps: true }
 );

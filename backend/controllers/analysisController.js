@@ -1,65 +1,55 @@
 const mongoose = require('mongoose');
 const Analysis = require('../models/Analysis');
-const { analyzeScript, generateStoryboard, analyzeScriptStream } = require('../services/openaiService');
+const { analyzeScript } = require('../services/openaiService');
 const { enhancePrompt } = require('../services/promptEnhancer');
 const { generateImage: hfGenerateImage } = require('../services/imageService');
 const pdfParse = require('pdf-parse');
+const fs = require('fs');
 
 /** Check if Mongoose is currently connected to MongoDB */
 const isDbConnected = () => mongoose.connection.readyState === 1;
 
-/**
- * POST /api/analyze-script
- * Accepts multipart form data (PDF file) OR a JSON body (raw text).
- * If MongoDB is unavailable, the analysis is still returned but not persisted.
- */
-async function analyzeScriptController(req, res) {
-  let scriptText = '';
-  let title = req.body.title || 'Untitled Script';
+// ── Global Image Generation Queue (In-Memory) ────────────────────────────────
+// Prevents Hugging Face rate limits and Node.js socket exhaustion at scale.
+const imageQueue = [];
+let isQueueProcessing = false;
 
-  // ── Parse input ────────────────────────────────────────────────────────────
-  if (req.file) {
-    const data = await pdfParse(req.file.buffer);
-    scriptText = data.text;
-    if (!title || title === 'Untitled Script') {
-      title = req.file.originalname.replace(/\.[^.]+$/, '');
-    }
-  } else if (req.body.scriptText) {
-    scriptText = req.body.scriptText;
-  } else {
-    return res.status(400).json({ error: 'No script text or file provided.' });
-  }
-
-  if (scriptText.trim().length < 50) {
-    return res.status(400).json({
-      error: 'Script is too short to analyze. Please provide at least 50 characters.',
-    });
-  }
-
-  // Truncate to stay within token limits (~12 000 chars ≈ ~3 000 tokens)
-  const truncated = scriptText.slice(0, 12000);
-
-  // ── Run AI analysis ────────────────────────────────────────────────────────
-  const scenes = await analyzeScript(truncated);
-
-  // ── Persist (if DB is available) ───────────────────────────────────────────
-  let analysis = { _id: `temp_${Date.now()}`, title, scriptText: truncated, scenes, createdAt: new Date() };
-
-  if (isDbConnected()) {
+async function processQueue() {
+  if (isQueueProcessing) return;
+  isQueueProcessing = true;
+  while (imageQueue.length > 0) {
+    const task = imageQueue.shift();
     try {
-      const payload = { title, scriptText: truncated, scenes };
-      if (req.user && req.user.userId) payload.userId = req.user.userId;
-      
-      const saved = await Analysis.create(payload);
-      analysis = saved.toObject();
-    } catch (dbErr) {
-      console.warn('[WARN] Could not save analysis to DB:', dbErr.message);
+      await task();
+      // Sleep 1s between HF calls to respect rate limits
+      await new Promise(r => setTimeout(r, 1000));
+    } catch (e) {
+      console.warn('[WARN] Background image task failed:', e.message);
     }
-  } else {
-    console.warn('[WARN] MongoDB not connected — analysis will not be persisted.');
   }
+  isQueueProcessing = false;
+}
 
-  return res.status(201).json({ success: true, analysis });
+/**
+ * Helper to split script into scenes based on INT/EXT headings.
+ */
+function parseScript(text) {
+  const sceneHeadings = /(INT\.|EXT\.|INT\/EXT\.)/i;
+  const parts = text.split(sceneHeadings);
+  
+  const scenes = [];
+  // parts[0] is everything before the first heading
+  for (let i = 1; i < parts.length; i += 2) {
+    const heading = parts[i];
+    const content = parts[i + 1] || "";
+    scenes.push(heading + content);
+  }
+  
+  if (scenes.length === 0) {
+    return [text];
+  }
+  
+  return scenes;
 }
 
 /**
@@ -119,6 +109,10 @@ async function deleteAnalysis(req, res) {
   return res.json({ success: true });
 }
 
+/**
+ * POST /api/generate-image
+ * Generates an image on demand
+ */
 async function generateImage(req, res) {
   const { prompt, sceneId, analysisId } = req.body;
   if (!prompt) return res.status(400).json({ error: 'Prompt is required.' });
@@ -142,19 +136,25 @@ async function generateImage(req, res) {
 }
 
 /**
- * POST /api/analyze-script-stream
- * SSE streaming version of the analysis endpoint.
- * Streams raw JSON deltas to the client, then sends a final 'done' event with the saved analysis.
+ * POST /api/analyze
+ * Sequential processing using Groq LLM and Hugging Face API.
  */
-async function analyzeScriptSSE(req, res) {
+async function advancedAnalyze(req, res) {
   let scriptText = '';
   let title = req.body.title || 'Untitled Script';
 
   if (req.file) {
-    const data = await pdfParse(req.file.buffer);
-    scriptText = data.text;
-    if (!title || title === 'Untitled Script') {
-      title = req.file.originalname.replace(/\.[^.]+$/, '');
+    try {
+      // Read from disk storage
+      const data = await pdfParse(fs.readFileSync(req.file.path));
+      scriptText = data.text;
+      if (!title || title === 'Untitled Script') {
+        title = req.file.originalname.replace(/\.[^.]+$/, '');
+      }
+      // Clean up tmp file
+      fs.unlinkSync(req.file.path);
+    } catch (parseErr) {
+      return res.status(500).json({ error: 'Failed to parse PDF file.' });
     }
   } else if (req.body.scriptText) {
     scriptText = req.body.scriptText;
@@ -164,101 +164,6 @@ async function analyzeScriptSSE(req, res) {
 
   if (scriptText.trim().length < 50) {
     return res.status(400).json({ error: 'Script is too short. Please provide at least 50 characters.' });
-  }
-
-  const truncated = scriptText.slice(0, 12000);
-
-  // Set SSE headers
-  res.writeHead(200, {
-    'Content-Type': 'text/event-stream',
-    'Cache-Control': 'no-cache',
-    Connection: 'keep-alive',
-    'X-Accel-Buffering': 'no',
-  });
-
-  let fullContent = '';
-
-  try {
-    const stream = await analyzeScriptStream(truncated);
-
-    for await (const chunk of stream) {
-      const delta = chunk.choices[0]?.delta?.content || '';
-      if (delta) {
-        fullContent += delta;
-        // Send each delta as an SSE event
-        res.write(`data: ${JSON.stringify({ type: 'delta', content: delta })}\n\n`);
-      }
-    }
-
-    // Clean potential markdown blocks before parsing
-    const cleanJsonStr = fullContent.replace(/^```json\s*/i, '').replace(/```\s*$/, '').trim();
-    const parsed = JSON.parse(cleanJsonStr);
-    const scenes = parsed.scenes || [];
-
-    // Persist if DB is available
-    let analysis = { _id: `temp_${Date.now()}`, title, scriptText: truncated, scenes, createdAt: new Date() };
-
-    if (isDbConnected()) {
-      try {
-        const payload = { title, scriptText: truncated, scenes };
-        if (req.user && req.user.userId) payload.userId = req.user.userId;
-        const saved = await Analysis.create(payload);
-        analysis = saved.toObject();
-      } catch (dbErr) {
-        console.warn('[WARN] Could not save analysis to DB:', dbErr.message);
-      }
-    }
-
-    // Send final event with the complete analysis
-    res.write(`data: ${JSON.stringify({ type: 'done', analysis })}\n\n`);
-    res.end();
-  } catch (err) {
-    console.error('[ERROR] Stream error:', err.message);
-    res.write(`data: ${JSON.stringify({ type: 'error', error: err.message })}\n\n`);
-    res.end();
-  }
-}
-
-/**
- * Helper to split script into scenes based on INT/EXT headings.
- */
-function parseScript(text) {
-  const sceneHeadings = /(INT\.|EXT\.|INT\/EXT\.)/i;
-  const parts = text.split(sceneHeadings);
-  
-  const scenes = [];
-  // parts[0] is everything before the first heading
-  for (let i = 1; i < parts.length; i += 2) {
-    const heading = parts[i];
-    const content = parts[i + 1] || "";
-    scenes.push(heading + content);
-  }
-  
-  if (scenes.length === 0) {
-    return [text];
-  }
-  
-  return scenes;
-}
-
-/**
- * POST /api/analyze
- * Sequential processing using Groq LLM and Hugging Face API.
- */
-async function advancedAnalyze(req, res) {
-  let scriptText = '';
-  let title = req.body.title || 'Untitled Script';
-
-  if (req.file) {
-    const data = await pdfParse(req.file.buffer);
-    scriptText = data.text;
-    if (!title || title === 'Untitled Script') {
-      title = req.file.originalname.replace(/\.[^.]+$/, '');
-    }
-  } else if (req.body.scriptText) {
-    scriptText = req.body.scriptText;
-  } else {
-    return res.status(400).json({ error: 'No script text or file provided.' });
   }
 
   const rawScenes = parseScript(scriptText).slice(0, 8); // Max 8 scenes
@@ -283,7 +188,7 @@ async function advancedAnalyze(req, res) {
     }
   }
 
-  // Persist first so we have an ID, then generate images in background
+  // Persist first so we have an ID, then push image generation to the global background queue
   let analysis = { 
     _id: `temp_${Date.now()}`, 
     title, 
@@ -303,24 +208,26 @@ async function advancedAnalyze(req, res) {
       const saved = await Analysis.create(payload);
       analysis = saved.toObject();
 
-      // Generate storyboard images in background (non-blocking)
+      // Enqueue storyboard image generation tasks
       const analysisId = saved._id;
-      (async () => {
-        for (let i = 0; i < processedScenes.length; i++) {
-          try {
-            const scene = processedScenes[i];
-            const firstShot = scene.shots && scene.shots[0] ? scene.shots[0] : null;
-            const enhancedPrompt = enhancePrompt(scene, firstShot);
-            const imageUrl = await hfGenerateImage(enhancedPrompt);
-            await Analysis.findOneAndUpdate(
-              { _id: analysisId, 'scenes.scene_number': scene.scene_number },
-              { $set: { 'scenes.$.imageUrl': imageUrl } }
-            );
-          } catch (imgErr) {
-            console.warn(`[WARN] Image gen failed for scene ${i + 1}:`, imgErr.message);
-          }
-        }
-      })();
+      for (let i = 0; i < processedScenes.length; i++) {
+        const scene = processedScenes[i];
+        const firstShot = scene.shots && scene.shots[0] ? scene.shots[0] : null;
+        const enhancedPrompt = enhancePrompt(scene, firstShot);
+        
+        // Push task to global queue
+        imageQueue.push(async () => {
+          console.log(`Generating image for Analysis ${analysisId}, Scene ${scene.scene_number}`);
+          const imageUrl = await hfGenerateImage(enhancedPrompt);
+          await Analysis.findOneAndUpdate(
+            { _id: analysisId, 'scenes.scene_number': scene.scene_number },
+            { $set: { 'scenes.$.imageUrl': imageUrl } }
+          );
+        });
+      }
+      
+      // Trigger queue processing
+      processQueue();
 
     } catch (dbErr) {
       console.warn('[WARN] Could not save analysis:', dbErr.message);
@@ -331,11 +238,9 @@ async function advancedAnalyze(req, res) {
 }
 
 module.exports = { 
-  analyzeScriptController, 
   listAnalyses, 
   getAnalysis, 
   deleteAnalysis, 
   generateImage, 
-  analyzeScriptSSE,
   advancedAnalyze 
 };

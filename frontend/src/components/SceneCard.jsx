@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, memo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   MapPin, Clock, ChevronDown, ChevronUp,
@@ -45,7 +45,7 @@ const TabBtn = ({ active, onClick, icon: Icon, label, color }) => (
   </button>
 );
 
-export default function SceneCard({ scene, index, forceExpand, analysisId }) {
+export default memo(function SceneCard({ scene, index, forceExpand, analysisId }) {
   const [expanded, setExpanded] = useState(index === 0);
   const [tab, setTab] = useState('storyboard'); // 'storyboard' | 'shots' | 'sound'
   const [imageUrl, setImageUrl] = useState(scene.imageUrl || null);
@@ -455,4 +455,4 @@ export default function SceneCard({ scene, index, forceExpand, analysisId }) {
       </AnimatePresence>
     </motion.div>
   );
-}
+});
