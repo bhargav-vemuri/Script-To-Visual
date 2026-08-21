@@ -6,8 +6,8 @@ import { Film, Zap, Camera, Palette, Eye, ChevronRight, Star } from 'lucide-reac
 const features = [
   {
     icon: Film,
-    color: '#f5a623',
-    bg: 'rgba(245,166,35,0.12)',
+    color: '#ffffff',
+    bg: 'rgba(255, 255, 255,0.12)',
     title: 'Scene Breakdown',
     desc: 'Auto-detect every scene with location, time, and rich description powered by Groq AI.',
   },
@@ -20,8 +20,8 @@ const features = [
   },
   {
     icon: Camera,
-    color: '#d97706',
-    bg: 'rgba(217,119,6,0.12)',
+    color: '#a1a1aa',
+    bg: 'rgba(161, 161, 170,0.12)',
     title: 'Camera Suggestions',
     desc: 'Get shot types, movements, and angles tailored to each scene\'s dramatic needs.',
   },
@@ -70,12 +70,12 @@ export default function LandingPage() {
           style={{
             display: 'inline-flex', alignItems: 'center', gap: 8,
             padding: '6px 16px', borderRadius: 999,
-            background: 'rgba(245,166,35,0.15)',
-            border: '1px solid rgba(245,166,35,0.35)',
+            background: 'rgba(255, 255, 255,0.15)',
+            border: '1px solid rgba(255, 255, 255,0.35)',
             marginBottom: 28,
           }}
         >
-          <span style={{ fontSize: '0.78rem', color: '#fde68a', fontWeight: 600 }}>✦ AI-Powered Cinematic Breakdown</span>
+          <span style={{ fontSize: '0.78rem', color: '#e4e4e7', fontWeight: 600 }}>✦ AI-Powered Cinematic Breakdown</span>
         </motion.div>
 
         <motion.h1
@@ -155,7 +155,7 @@ export default function LandingPage() {
           transition={{ duration: 0.5 }}
           style={{ textAlign: 'center', marginBottom: 56 }}
         >
-          <p style={{ color: '#fde68a', fontWeight: 600, fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 12 }}>
+          <p style={{ color: '#e4e4e7', fontWeight: 600, fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 12 }}>
             What You Get
           </p>
           <h2 className="font-grotesk" style={{ fontSize: 'clamp(1.8rem, 3vw, 2.6rem)', fontWeight: 700 }}>
@@ -205,8 +205,8 @@ export default function LandingPage() {
           style={{
             maxWidth: '700px', margin: '0 auto', textAlign: 'center',
             padding: '56px 40px',
-            background: 'linear-gradient(135deg, rgba(245,166,35,0.12), rgba(217,119,6,0.08))',
-            border: '1px solid rgba(245,166,35,0.25)',
+            background: 'linear-gradient(135deg, rgba(255, 255, 255,0.12), rgba(161, 161, 170,0.08))',
+            border: '1px solid rgba(255, 255, 255,0.25)',
             borderRadius: 24,
           }}
         >

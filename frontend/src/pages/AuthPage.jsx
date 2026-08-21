@@ -48,10 +48,10 @@ export default function AuthPage() {
         <div style={{ textAlign: 'center', marginBottom: 32 }}>
           <div style={{
             width: 56, height: 56, borderRadius: 16,
-            background: 'linear-gradient(135deg, #f5a623, #d97706)',
+            background: 'linear-gradient(135deg, #ffffff, #a1a1aa)',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             margin: '0 auto 16px',
-            boxShadow: '0 0 30px rgba(245,166,35,0.4)',
+            boxShadow: '0 0 30px rgba(255, 255, 255,0.4)',
           }}>
             <Film size={28} color="#fff" />
           </div>
@@ -92,7 +92,7 @@ export default function AuthPage() {
                     borderRadius: 10, color: 'var(--text-primary)', outline: 'none',
                     transition: 'border-color 0.2s',
                   }}
-                  onFocus={e => e.target.style.borderColor = '#d97706'}
+                  onFocus={e => e.target.style.borderColor = '#a1a1aa'}
                   onBlur={e => e.target.style.borderColor = 'var(--border)'}
                 />
               </div>
@@ -114,7 +114,7 @@ export default function AuthPage() {
                   borderRadius: 10, color: 'var(--text-primary)', outline: 'none',
                   transition: 'border-color 0.2s',
                 }}
-                onFocus={e => e.target.style.borderColor = '#d97706'}
+                onFocus={e => e.target.style.borderColor = '#a1a1aa'}
                 onBlur={e => e.target.style.borderColor = 'var(--border)'}
               />
             </div>
@@ -135,7 +135,7 @@ export default function AuthPage() {
                   borderRadius: 10, color: 'var(--text-primary)', outline: 'none',
                   transition: 'border-color 0.2s',
                 }}
-                onFocus={e => e.target.style.borderColor = '#d97706'}
+                onFocus={e => e.target.style.borderColor = '#a1a1aa'}
                 onBlur={e => e.target.style.borderColor = 'var(--border)'}
               />
             </div>
@@ -151,7 +151,7 @@ export default function AuthPage() {
           {isLogin ? "Don't have an account? " : "Already have an account? "}
           <button
             onClick={() => { setIsLogin(!isLogin); setError(''); }}
-            style={{ background: 'none', border: 'none', color: '#fde68a', fontWeight: 600, cursor: 'pointer', padding: 0 }}
+            style={{ background: 'none', border: 'none', color: '#e4e4e7', fontWeight: 600, cursor: 'pointer', padding: 0 }}
           >
             {isLogin ? 'Sign up' : 'Sign in'}
           </button>

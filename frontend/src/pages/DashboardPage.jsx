@@ -106,9 +106,9 @@ export default function DashboardPage() {
                 key={key}
                 onClick={() => setView(key)}
                 style={{
-                  padding: '8px 14px', background: view === key ? 'rgba(245,166,35,0.15)' : 'transparent',
+                  padding: '8px 14px', background: view === key ? 'rgba(255, 255, 255,0.15)' : 'transparent',
                   border: 'none', cursor: 'pointer',
-                  color: view === key ? '#fde68a' : 'var(--text-secondary)',
+                  color: view === key ? '#e4e4e7' : 'var(--text-secondary)',
                   transition: 'all 0.2s',
                 }}
                 title={key === 'list' ? 'List view' : 'Storyboard view'}
@@ -224,9 +224,9 @@ function getSummaryStats(scenes) {
   const totalIndividualShots = scenes.reduce((sum, s) => sum + (s.shot_division?.length || 0), 0);
   const allLocations = [...new Set(scenes.map(s => s.location).filter(Boolean))];
   return [
-    { label: 'Total Scenes', value: scenes.length, color: '#fde68a' },
-    { label: 'Mood Tags', value: allMoods.length, color: '#fcd34d' },
+    { label: 'Total Scenes', value: scenes.length, color: '#e4e4e7' },
+    { label: 'Mood Tags', value: allMoods.length, color: '#d4d4d8' },
     { label: 'Shot Types', value: allShots.length, color: '#5eead4' },
-    { label: 'Total Shots', value: totalIndividualShots || allLocations.length, color: '#fb923c' },
+    { label: 'Total Shots', value: totalIndividualShots || allLocations.length, color: '#ffffff' },
   ];
 }

@@ -31,14 +31,14 @@ export default function DocsPage() {
           style={{ padding: '32px', marginBottom: 32 }}
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 24 }}>
-            <div style={{ width: 40, height: 40, borderRadius: 10, background: 'rgba(245,166,35,0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <Code size={20} color="#fde68a" />
+            <div style={{ width: 40, height: 40, borderRadius: 10, background: 'rgba(255, 255, 255,0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <Code size={20} color="#e4e4e7" />
             </div>
             <h2 className="font-grotesk" style={{ fontSize: '1.4rem', fontWeight: 700, color: 'var(--text-primary)' }}>API Reference</h2>
           </div>
           
           <div style={{ marginBottom: 24 }}>
-            <h3 style={{ fontSize: '1rem', color: '#fcd34d', marginBottom: 8, display: 'flex', alignItems: 'center', gap: 8 }}>
+            <h3 style={{ fontSize: '1rem', color: '#d4d4d8', marginBottom: 8, display: 'flex', alignItems: 'center', gap: 8 }}>
               <Terminal size={14} /> POST /api/analyze-script-stream
             </h3>
             <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', marginBottom: 12, lineHeight: 1.6 }}>
@@ -52,7 +52,7 @@ export default function DocsPage() {
           </div>
 
           <div style={{ borderTop: '1px solid var(--border)', paddingTop: 24 }}>
-            <h3 style={{ fontSize: '1rem', color: '#fcd34d', marginBottom: 8, display: 'flex', alignItems: 'center', gap: 8 }}>
+            <h3 style={{ fontSize: '1rem', color: '#d4d4d8', marginBottom: 8, display: 'flex', alignItems: 'center', gap: 8 }}>
               <Terminal size={14} /> POST /api/generate-image
             </h3>
             <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', marginBottom: 12, lineHeight: 1.6 }}>
