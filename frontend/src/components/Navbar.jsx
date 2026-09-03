@@ -31,7 +31,7 @@ export default function Navbar() {
     borderRadius: '8px',
     fontSize: '0.9rem',
     fontWeight: active ? 600 : 400,
-    color: active ? '#F5FFC6' : 'var(--text-secondary)',
+    color: active ? '#F5FFC6' : 'rgba(245, 255, 198, 0.65)',
     background: active ? 'rgba(245, 255, 198,0.12)' : 'transparent',
     transition: 'all 0.2s',
     display: 'block',
@@ -46,7 +46,7 @@ export default function Navbar() {
         position: 'sticky',
         top: 0,
         zIndex: 100,
-        background: 'rgba(186, 151, 144,0.85)',
+        background: 'rgba(42, 7, 9, 0.85)',
         backdropFilter: 'blur(20px)',
         borderBottom: '1px solid var(--border)',
       }}
@@ -66,7 +66,7 @@ export default function Navbar() {
         <Link to="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '10px' }}>
           <div style={{
             width: 36, height: 36,
-            background: 'linear-gradient(135deg, #F5FFC6, #5B5941)',
+            background: 'linear-gradient(135deg, #BF3100, #3B0D11)',
             borderRadius: 10,
             display: 'flex', alignItems: 'center', justifyContent: 'center',
           }}>
@@ -87,7 +87,7 @@ export default function Navbar() {
                 to={to}
                 style={navLinkStyle(active)}
                 onMouseEnter={e => { if (!active) { e.currentTarget.style.color = 'var(--text-primary)'; e.currentTarget.style.background = 'rgba(245, 255, 198,0.06)'; } }}
-                onMouseLeave={e => { if (!active) { e.currentTarget.style.color = 'var(--text-secondary)'; e.currentTarget.style.background = 'transparent'; } }}
+                onMouseLeave={e => { if (!active) { e.currentTarget.style.color = 'rgba(245, 255, 198, 0.65)'; e.currentTarget.style.background = 'transparent'; } }}
               >
                 {label}
               </Link>
@@ -99,7 +99,7 @@ export default function Navbar() {
         <div className="nav-links" style={{ gap: '16px' }}>
           {user ? (
             <>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 8, color: 'var(--text-secondary)' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, color: 'rgba(245, 255, 198, 0.65)' }}>
                 <div style={{ width: 30, height: 30, borderRadius: '50%', background: 'var(--bg-card2)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   <User size={14} color="#F5FFC6" />
                 </div>
@@ -124,11 +124,11 @@ export default function Navbar() {
           style={{
             background: 'none', border: '1px solid var(--border)',
             borderRadius: 8, padding: '6px 8px', cursor: 'pointer',
-            color: 'var(--text-secondary)', alignItems: 'center', justifyContent: 'center',
+            color: 'rgba(245, 255, 198, 0.65)', alignItems: 'center', justifyContent: 'center',
             transition: 'border-color 0.2s, color 0.2s',
           }}
           onMouseEnter={e => { e.currentTarget.style.borderColor = '#5B5941'; e.currentTarget.style.color = '#F5FFC6'; }}
-          onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.color = 'var(--text-secondary)'; }}
+          onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.color = 'rgba(245, 255, 198, 0.65)'; }}
           aria-label="Toggle menu"
         >
           {menuOpen ? <X size={18} /> : <Menu size={18} />}
@@ -158,7 +158,7 @@ export default function Navbar() {
         <div style={{ borderTop: '1px solid var(--border)', marginTop: 8, paddingTop: 12, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12 }}>
           {user ? (
             <>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 8, color: 'var(--text-secondary)', fontSize: '0.85rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, color: 'rgba(245, 255, 198, 0.65)', fontSize: '0.85rem' }}>
                 <User size={14} color="#F5FFC6" />
                 <span style={{ fontWeight: 500 }}>{user.name}</span>
               </div>

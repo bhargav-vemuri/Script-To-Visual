@@ -25,7 +25,7 @@ export default function Footer() {
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
             <div style={{
               width: 34, height: 34, borderRadius: 10,
-              background: 'linear-gradient(135deg, #F5FFC6, #5B5941)',
+              background: 'linear-gradient(135deg, #BF3100, #3B0D11)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               boxShadow: '0 0 20px rgba(200,146,42,0.25)'
             }}>
@@ -104,7 +104,7 @@ export default function Footer() {
           &copy; {new Date().getFullYear()} ScriptVision. All rights reserved.
         </p>
         <p style={{ color: 'var(--text-secondary)', fontSize: '0.8rem', display: 'flex', alignItems: 'center', gap: 6 }}>
-          Crafted with <Heart size={12} color="#BF3100" fill="#BF3100" /> for filmmakers
+          Crafted with <Heart size={12} color="#F5FFC6" fill="#BF3100" /> for filmmakers
         </p>
       </div>
 
