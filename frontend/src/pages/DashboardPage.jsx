@@ -106,9 +106,9 @@ export default function DashboardPage() {
                 key={key}
                 onClick={() => setView(key)}
                 style={{
-                  padding: '8px 14px', background: view === key ? 'rgba(255, 255, 255,0.15)' : 'transparent',
+                  padding: '8px 14px', background: view === key ? 'rgba(245, 255, 198,0.15)' : 'transparent',
                   border: 'none', cursor: 'pointer',
-                  color: view === key ? '#e4e4e7' : 'var(--text-secondary)',
+                  color: view === key ? '#F5FFC6' : 'var(--text-secondary)',
                   transition: 'all 0.2s',
                 }}
                 title={key === 'list' ? 'List view' : 'Storyboard view'}
@@ -205,7 +205,7 @@ function ExportMenu({ analysis }) {
                 color: 'var(--text-secondary)', fontSize: '0.88rem',
                 cursor: 'pointer', borderRadius: 7, transition: 'background 0.15s',
               }}
-              onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,255,255,0.05)'}
+              onMouseEnter={e => e.currentTarget.style.background = 'rgba(245, 255, 198,0.05)'}
               onMouseLeave={e => e.currentTarget.style.background = 'none'}
             >
               {label}
@@ -224,9 +224,9 @@ function getSummaryStats(scenes) {
   const totalIndividualShots = scenes.reduce((sum, s) => sum + (s.shot_division?.length || 0), 0);
   const allLocations = [...new Set(scenes.map(s => s.location).filter(Boolean))];
   return [
-    { label: 'Total Scenes', value: scenes.length, color: '#e4e4e7' },
-    { label: 'Mood Tags', value: allMoods.length, color: '#d4d4d8' },
-    { label: 'Shot Types', value: allShots.length, color: '#5eead4' },
-    { label: 'Total Shots', value: totalIndividualShots || allLocations.length, color: '#ffffff' },
+    { label: 'Total Scenes', value: scenes.length, color: '#F5FFC6' },
+    { label: 'Mood Tags', value: allMoods.length, color: '#5B5941' },
+    { label: 'Shot Types', value: allShots.length, color: '#F5FFC6' },
+    { label: 'Total Shots', value: totalIndividualShots || allLocations.length, color: '#F5FFC6' },
   ];
 }

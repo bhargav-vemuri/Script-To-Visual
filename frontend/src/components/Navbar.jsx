@@ -31,8 +31,8 @@ export default function Navbar() {
     borderRadius: '8px',
     fontSize: '0.9rem',
     fontWeight: active ? 600 : 400,
-    color: active ? '#e4e4e7' : 'var(--text-secondary)',
-    background: active ? 'rgba(255, 255, 255,0.12)' : 'transparent',
+    color: active ? '#F5FFC6' : 'var(--text-secondary)',
+    background: active ? 'rgba(245, 255, 198,0.12)' : 'transparent',
     transition: 'all 0.2s',
     display: 'block',
   });
@@ -46,7 +46,7 @@ export default function Navbar() {
         position: 'sticky',
         top: 0,
         zIndex: 100,
-        background: 'rgba(8,7,10,0.85)',
+        background: 'rgba(14, 20, 40,0.85)',
         backdropFilter: 'blur(20px)',
         borderBottom: '1px solid var(--border)',
       }}
@@ -66,7 +66,7 @@ export default function Navbar() {
         <Link to="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '10px' }}>
           <div style={{
             width: 36, height: 36,
-            background: 'linear-gradient(135deg, #ffffff, #a1a1aa)',
+            background: 'linear-gradient(135deg, #F5FFC6, #5B5941)',
             borderRadius: 10,
             display: 'flex', alignItems: 'center', justifyContent: 'center',
           }}>
@@ -86,7 +86,7 @@ export default function Navbar() {
                 key={to}
                 to={to}
                 style={navLinkStyle(active)}
-                onMouseEnter={e => { if (!active) { e.currentTarget.style.color = 'var(--text-primary)'; e.currentTarget.style.background = 'rgba(255, 255, 255,0.06)'; } }}
+                onMouseEnter={e => { if (!active) { e.currentTarget.style.color = 'var(--text-primary)'; e.currentTarget.style.background = 'rgba(245, 255, 198,0.06)'; } }}
                 onMouseLeave={e => { if (!active) { e.currentTarget.style.color = 'var(--text-secondary)'; e.currentTarget.style.background = 'transparent'; } }}
               >
                 {label}
@@ -101,7 +101,7 @@ export default function Navbar() {
             <>
               <div style={{ display: 'flex', alignItems: 'center', gap: 8, color: 'var(--text-secondary)' }}>
                 <div style={{ width: 30, height: 30, borderRadius: '50%', background: 'var(--bg-card2)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <User size={14} color="#e4e4e7" />
+                  <User size={14} color="#F5FFC6" />
                 </div>
                 <span style={{ fontSize: '0.85rem', fontWeight: 500 }}>{user.name}</span>
               </div>
@@ -127,7 +127,7 @@ export default function Navbar() {
             color: 'var(--text-secondary)', alignItems: 'center', justifyContent: 'center',
             transition: 'border-color 0.2s, color 0.2s',
           }}
-          onMouseEnter={e => { e.currentTarget.style.borderColor = '#a1a1aa'; e.currentTarget.style.color = '#e4e4e7'; }}
+          onMouseEnter={e => { e.currentTarget.style.borderColor = '#5B5941'; e.currentTarget.style.color = '#F5FFC6'; }}
           onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.color = 'var(--text-secondary)'; }}
           aria-label="Toggle menu"
         >
@@ -159,7 +159,7 @@ export default function Navbar() {
           {user ? (
             <>
               <div style={{ display: 'flex', alignItems: 'center', gap: 8, color: 'var(--text-secondary)', fontSize: '0.85rem' }}>
-                <User size={14} color="#e4e4e7" />
+                <User size={14} color="#F5FFC6" />
                 <span style={{ fontWeight: 500 }}>{user.name}</span>
               </div>
               <button onClick={handleLogout} className="btn-secondary" style={{ padding: '6px 14px', fontSize: '0.8rem' }}>

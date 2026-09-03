@@ -8,7 +8,7 @@ import {
 import { generateImage } from '../api/client';
 import toast from 'react-hot-toast';
 
-const moodColors = ['chip-purple','chip-pink','chip-blue','chip-teal','chip-blue','chip-green'];
+const moodColors = ['chip-cream','chip-ebony','chip-ebony','chip-spice','chip-ebony','chip-spice'];
 
 const Section = ({ icon: Icon, title, color, children }) => (
   <div style={{ marginBottom: 24 }}>
@@ -99,12 +99,12 @@ export default memo(function SceneCard({ scene, index, forceExpand, analysisId }
         <div style={{ display:'flex', alignItems:'center', gap:16, flex:1, minWidth:0 }}>
           <div style={{
             minWidth:44, height:44,
-            background:'linear-gradient(135deg,rgba(255, 255, 255,0.18),rgba(161, 161, 170,0.18))',
-            border:'1px solid rgba(255, 255, 255,0.4)', borderRadius:10,
+            background:'linear-gradient(135deg,rgba(245, 255, 198,0.18),rgba(91, 89, 65,0.18))',
+            border:'1px solid rgba(245, 255, 198,0.4)', borderRadius:10,
             display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center',
           }}>
-            <span style={{ fontSize:'0.6rem', color:'#e4e4e7', fontWeight:600, letterSpacing:'0.1em' }}>SCN</span>
-            <span style={{ fontSize:'1rem', fontWeight:800, color:'#ffffff', lineHeight:1 }}>{scene.scene_number}</span>
+            <span style={{ fontSize:'0.6rem', color:'#F5FFC6', fontWeight:600, letterSpacing:'0.1em' }}>SCN</span>
+            <span style={{ fontSize:'1rem', fontWeight:800, color:'#F5FFC6', lineHeight:1 }}>{scene.scene_number}</span>
           </div>
           <div style={{ minWidth:0 }}>
             <p className="font-grotesk" style={{ fontWeight:600, fontSize:'1rem', color:'var(--text-primary)', marginBottom:4, textAlign:'left' }}>
@@ -149,16 +149,16 @@ export default memo(function SceneCard({ scene, index, forceExpand, analysisId }
               {scene.description && (
                 <div style={{ marginBottom:20 }}>
                   <div style={{ display:'flex', alignItems:'center', gap:8, marginBottom:8 }}>
-                    <Film size={13} color="#e4e4e7" />
-                    <span style={{ fontSize:'0.72rem', fontWeight:700, color:'#e4e4e7', textTransform:'uppercase', letterSpacing:'0.1em' }}>
+                    <Film size={13} color="#F5FFC6" />
+                    <span style={{ fontSize:'0.72rem', fontWeight:700, color:'#F5FFC6', textTransform:'uppercase', letterSpacing:'0.1em' }}>
                       Director's Scene Description
                     </span>
                   </div>
                   <p style={{
                     fontSize:'0.88rem', color:'var(--text-secondary)', lineHeight:1.75,
-                    padding:'14px 16px', background:'rgba(255, 255, 255,0.05)',
-                    border:'1px solid rgba(255, 255, 255,0.15)', borderRadius:10,
-                    borderLeft:'3px solid rgba(255, 255, 255,0.5)',
+                    padding:'14px 16px', background:'rgba(245, 255, 198,0.05)',
+                    border:'1px solid rgba(245, 255, 198,0.15)', borderRadius:10,
+                    borderLeft:'3px solid rgba(245, 255, 198,0.5)',
                     fontStyle:'italic',
                   }}>
                     {scene.description}
@@ -176,9 +176,9 @@ export default memo(function SceneCard({ scene, index, forceExpand, analysisId }
 
               {/* ── Section tabs ── */}
               <div style={{ display:'flex', gap:8, marginBottom:24, flexWrap:'wrap' }}>
-                <TabBtn active={tab==='storyboard'} onClick={()=>setTab('storyboard')} icon={Aperture} label="Storyboard Frame" color="#ffffff" />
-                <TabBtn active={tab==='shots'} onClick={()=>setTab('shots')} icon={Camera} label="Shot Division" color="#a1a1aa" />
-                <TabBtn active={tab==='sound'} onClick={()=>setTab('sound')} icon={Music} label="Music & Editing" color="#14b8a6" />
+                <TabBtn active={tab==='storyboard'} onClick={()=>setTab('storyboard')} icon={Aperture} label="Storyboard Frame" color="#F5FFC6" />
+                <TabBtn active={tab==='shots'} onClick={()=>setTab('shots')} icon={Camera} label="Shot Division" color="#5B5941" />
+                <TabBtn active={tab==='sound'} onClick={()=>setTab('sound')} icon={Music} label="Music & Editing" color="#BF3100" />
               </div>
 
               {/* ══ TAB: STORYBOARD ══ */}
@@ -193,7 +193,7 @@ export default memo(function SceneCard({ scene, index, forceExpand, analysisId }
                           <span style={{ fontSize:'0.78rem', color:'var(--text-secondary)' }}>🎨 AI-Generated Storyboard Frame • FLUX.1</span>
                           <button
                             onClick={handleGenerateImage} disabled={generating}
-                            style={{ background:'none', border:'1px solid var(--border)', borderRadius:6, color:'#e4e4e7', fontSize:'0.75rem', padding:'4px 10px', cursor:'pointer' }}
+                            style={{ background:'none', border:'1px solid var(--border)', borderRadius:6, color:'#F5FFC6', fontSize:'0.75rem', padding:'4px 10px', cursor:'pointer' }}
                           >
                             {generating ? 'Regenerating...' : 'Regenerate'}
                           </button>
@@ -204,11 +204,11 @@ export default memo(function SceneCard({ scene, index, forceExpand, analysisId }
                         onClick={handleGenerateImage} disabled={generating}
                         style={{
                           width:'100%', padding:'20px',
-                          background: generating ? 'rgba(255, 255, 255,0.08)' : 'linear-gradient(135deg,rgba(255, 255, 255,0.08),rgba(161, 161, 170,0.08))',
-                          border:'1px dashed rgba(255, 255, 255,0.4)', borderRadius:12,
+                          background: generating ? 'rgba(245, 255, 198,0.08)' : 'linear-gradient(135deg,rgba(245, 255, 198,0.08),rgba(91, 89, 65,0.08))',
+                          border:'1px dashed rgba(245, 255, 198,0.4)', borderRadius:12,
                           cursor: generating ? 'wait' : 'pointer',
                           display:'flex', alignItems:'center', justifyContent:'center', gap:10,
-                          color:'#e4e4e7', fontSize:'0.88rem', fontWeight:500, transition:'all 0.2s',
+                          color:'#F5FFC6', fontSize:'0.88rem', fontWeight:500, transition:'all 0.2s',
                         }}
                       >
                         {generating
@@ -222,32 +222,32 @@ export default memo(function SceneCard({ scene, index, forceExpand, analysisId }
                   {/* Visual style + elements */}
                   <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill,minmax(260px,1fr))', gap:20 }}>
                     {scene.visual_style && (scene.visual_style.lighting || scene.visual_style.color_palette || scene.visual_style.style_reference) && (
-                      <Section icon={Eye} title="Visual Style" color="#d4d4d8">
+                      <Section icon={Eye} title="Visual Style" color="#5B5941">
                         {scene.visual_style.lighting && (
                           <p style={{ fontSize:'0.82rem', color:'var(--text-secondary)', marginBottom:6 }}>
-                            <span style={{ color:'#d4d4d8', fontWeight:600 }}>Lighting: </span>{scene.visual_style.lighting}
+                            <span style={{ color:'#5B5941', fontWeight:600 }}>Lighting: </span>{scene.visual_style.lighting}
                           </p>
                         )}
                         {scene.visual_style.color_palette && (
                           <p style={{ fontSize:'0.82rem', color:'var(--text-secondary)', marginBottom:6 }}>
-                            <span style={{ color:'#d4d4d8', fontWeight:600 }}>Palette: </span>{scene.visual_style.color_palette}
+                            <span style={{ color:'#5B5941', fontWeight:600 }}>Palette: </span>{scene.visual_style.color_palette}
                           </p>
                         )}
                         {scene.visual_style.style_reference && (
                           <p style={{ fontSize:'0.82rem', color:'var(--text-secondary)' }}>
-                            <span style={{ color:'#d4d4d8', fontWeight:600 }}>Ref: </span>{scene.visual_style.style_reference}
+                            <span style={{ color:'#5B5941', fontWeight:600 }}>Ref: </span>{scene.visual_style.style_reference}
                           </p>
                         )}
                       </Section>
                     )}
 
                     {scene.elements && (scene.elements.characters?.length > 0 || scene.elements.props?.length > 0) && (
-                      <Section icon={Users} title="Scene Elements" color="#ffffff">
+                      <Section icon={Users} title="Scene Elements" color="#F5FFC6">
                         {scene.elements.characters?.length > 0 && (
                           <div style={{ marginBottom:8 }}>
                             <p style={{ fontSize:'0.68rem', color:'var(--text-secondary)', marginBottom:5, textTransform:'uppercase', letterSpacing:'0.06em' }}>Characters</p>
                             {scene.elements.characters.map((c,i) => (
-                              <p key={i} style={{ fontSize:'0.8rem', color:'var(--text-secondary)', marginBottom:4, paddingLeft:8, borderLeft:'2px solid rgba(255, 255, 255,0.4)' }}>{c}</p>
+                              <p key={i} style={{ fontSize:'0.8rem', color:'var(--text-secondary)', marginBottom:4, paddingLeft:8, borderLeft:'2px solid rgba(245, 255, 198,0.4)' }}>{c}</p>
                             ))}
                           </div>
                         )}
@@ -255,7 +255,7 @@ export default memo(function SceneCard({ scene, index, forceExpand, analysisId }
                           <div style={{ marginBottom:8 }}>
                             <p style={{ fontSize:'0.68rem', color:'var(--text-secondary)', marginBottom:5, textTransform:'uppercase', letterSpacing:'0.06em' }}>Props</p>
                             <div style={{ display:'flex', gap:5, flexWrap:'wrap' }}>
-                              {scene.elements.props.map((p,i) => <Chip key={i} label={p} colorClass="chip-blue" />)}
+                              {scene.elements.props.map((p,i) => <Chip key={i} label={p} colorClass="chip-ebony" />)}
                             </div>
                           </div>
                         )}
@@ -263,7 +263,7 @@ export default memo(function SceneCard({ scene, index, forceExpand, analysisId }
                           <div>
                             <p style={{ fontSize:'0.68rem', color:'var(--text-secondary)', marginBottom:5, textTransform:'uppercase', letterSpacing:'0.06em' }}>Action Beats</p>
                             {scene.elements.actions.map((a,i) => (
-                              <p key={i} style={{ fontSize:'0.79rem', color:'var(--text-secondary)', marginBottom:5, paddingLeft:8, borderLeft:'2px solid rgba(255, 255, 255,0.3)' }}>{a}</p>
+                              <p key={i} style={{ fontSize:'0.79rem', color:'var(--text-secondary)', marginBottom:5, paddingLeft:8, borderLeft:'2px solid rgba(245, 255, 198,0.3)' }}>{a}</p>
                             ))}
                           </div>
                         )}
@@ -285,19 +285,19 @@ export default memo(function SceneCard({ scene, index, forceExpand, analysisId }
                           animate={{ opacity:1, x:0 }}
                           transition={{ delay: i * 0.06 }}
                           style={{
-                            background:'rgba(255, 255, 255,0.04)', border:'1px solid rgba(255, 255, 255,0.2)',
+                            background:'rgba(245, 255, 198,0.04)', border:'1px solid rgba(245, 255, 198,0.2)',
                             borderRadius:12, padding:'16px 18px',
-                            borderLeft:'3px solid #a1a1aa',
+                            borderLeft:'3px solid #5B5941',
                           }}
                         >
                           <div style={{ display:'flex', alignItems:'flex-start', gap:14 }}>
                             {/* Shot number badge */}
                             <div style={{
                               minWidth:32, height:32, borderRadius:8, flexShrink:0,
-                              background:'rgba(255, 255, 255,0.18)', border:'1px solid rgba(255, 255, 255,0.4)',
+                              background:'rgba(245, 255, 198,0.18)', border:'1px solid rgba(245, 255, 198,0.4)',
                               display:'flex', alignItems:'center', justifyContent:'center',
                             }}>
-                              <span style={{ fontSize:'0.78rem', fontWeight:800, color:'#ffffff' }}>{shot.shot_number}</span>
+                              <span style={{ fontSize:'0.78rem', fontWeight:800, color:'#F5FFC6' }}>{shot.shot_number}</span>
                             </div>
 
                             <div style={{ flex:1, minWidth:0 }}>
@@ -307,7 +307,7 @@ export default memo(function SceneCard({ scene, index, forceExpand, analysisId }
                                   {shot.shot_type}
                                 </span>
                                 {shot.duration && (
-                                  <span style={{ fontSize:'0.72rem', color:'#a1a1aa', background:'rgba(161, 161, 170,0.1)', border:'1px solid rgba(161, 161, 170,0.25)', padding:'2px 8px', borderRadius:6 }}>
+                                  <span style={{ fontSize:'0.72rem', color:'#5B5941', background:'rgba(91, 89, 65,0.1)', border:'1px solid rgba(91, 89, 65,0.25)', padding:'2px 8px', borderRadius:6 }}>
                                     ⏱ {shot.duration}
                                   </span>
                                 )}
@@ -315,9 +315,9 @@ export default memo(function SceneCard({ scene, index, forceExpand, analysisId }
 
                               {/* Chips row */}
                               <div style={{ display:'flex', flexWrap:'wrap', gap:5, marginBottom:10 }}>
-                                {shot.angle && <Chip label={`📐 ${shot.angle}`} colorClass="chip-blue" />}
-                                {shot.movement && <Chip label={`🎥 ${shot.movement}`} colorClass="chip-teal" />}
-                                {shot.lens && <Chip label={`🔭 ${shot.lens}`} colorClass="chip-purple" />}
+                                {shot.angle && <Chip label={`📐 ${shot.angle}`} colorClass="chip-ebony" />}
+                                {shot.movement && <Chip label={`🎥 ${shot.movement}`} colorClass="chip-spice" />}
+                                {shot.lens && <Chip label={`🔭 ${shot.lens}`} colorClass="chip-cream" />}
                               </div>
 
                               {/* Description */}
@@ -330,8 +330,8 @@ export default memo(function SceneCard({ scene, index, forceExpand, analysisId }
                               {/* Purpose */}
                               {shot.purpose && (
                                 <div style={{ display:'flex', alignItems:'flex-start', gap:6 }}>
-                                  <Hash size={11} color="#a1a1aa" style={{ marginTop:2, flexShrink:0 }} />
-                                  <p style={{ fontSize:'0.78rem', color:'#fbbf24', fontStyle:'italic', lineHeight:1.5 }}>
+                                  <Hash size={11} color="#5B5941" style={{ marginTop:2, flexShrink:0 }} />
+                                  <p style={{ fontSize:'0.78rem', color:'#F5FFC6', fontStyle:'italic', lineHeight:1.5 }}>
                                     {shot.purpose}
                                   </p>
                                 </div>
@@ -349,12 +349,12 @@ export default memo(function SceneCard({ scene, index, forceExpand, analysisId }
 
                   {/* Camera overview chips */}
                   {(scene.camera?.shots?.length > 0 || scene.camera?.movement?.length > 0 || scene.camera?.angles?.length > 0) && (
-                    <div style={{ marginTop:20, padding:'14px 16px', background:'rgba(255, 255, 255,0.05)', border:'1px solid rgba(255, 255, 255,0.15)', borderRadius:10 }}>
-                      <p style={{ fontSize:'0.68rem', color:'#e4e4e7', fontWeight:700, textTransform:'uppercase', letterSpacing:'0.08em', marginBottom:10 }}>Camera Language Overview</p>
+                    <div style={{ marginTop:20, padding:'14px 16px', background:'rgba(245, 255, 198,0.05)', border:'1px solid rgba(245, 255, 198,0.15)', borderRadius:10 }}>
+                      <p style={{ fontSize:'0.68rem', color:'#F5FFC6', fontWeight:700, textTransform:'uppercase', letterSpacing:'0.08em', marginBottom:10 }}>Camera Language Overview</p>
                       <div style={{ display:'flex', flexWrap:'wrap', gap:6 }}>
-                        {scene.camera.shots?.map((s,i) => <Chip key={`s${i}`} label={s} colorClass="chip-blue" />)}
-                        {scene.camera.movement?.map((m,i) => <Chip key={`m${i}`} label={m} colorClass="chip-teal" />)}
-                        {scene.camera.angles?.map((a,i) => <Chip key={`a${i}`} label={a} colorClass="chip-green" />)}
+                        {scene.camera.shots?.map((s,i) => <Chip key={`s${i}`} label={s} colorClass="chip-ebony" />)}
+                        {scene.camera.movement?.map((m,i) => <Chip key={`m${i}`} label={m} colorClass="chip-spice" />)}
+                        {scene.camera.angles?.map((a,i) => <Chip key={`a${i}`} label={a} colorClass="chip-spice" />)}
                       </div>
                     </div>
                   )}
@@ -368,10 +368,10 @@ export default memo(function SceneCard({ scene, index, forceExpand, analysisId }
                     <>
                       {/* Music card */}
                       {scene.sound_design.music && (
-                        <div style={{ background:'rgba(20,184,166,0.05)', border:'1px solid rgba(20,184,166,0.2)', borderRadius:12, padding:'20px', borderLeft:'3px solid #14b8a6' }}>
+                        <div style={{ background:'rgba(91, 89, 65, 0.05)', border:'1px solid rgba(91, 89, 65, 0.2)', borderRadius:12, padding:'20px', borderLeft:'3px solid #BF3100' }}>
                           <div style={{ display:'flex', alignItems:'center', gap:8, marginBottom:16 }}>
-                            <Music size={16} color="#14b8a6" />
-                            <span className="font-grotesk" style={{ fontWeight:700, color:'#14b8a6', fontSize:'0.88rem', textTransform:'uppercase', letterSpacing:'0.08em' }}>Score & Sound</span>
+                            <Music size={16} color="#BF3100" />
+                            <span className="font-grotesk" style={{ fontWeight:700, color:'#BF3100', fontSize:'0.88rem', textTransform:'uppercase', letterSpacing:'0.08em' }}>Score & Sound</span>
                           </div>
                           <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill,minmax(220px,1fr))', gap:14 }}>
                             {scene.sound_design.music.genre && (
@@ -389,7 +389,7 @@ export default memo(function SceneCard({ scene, index, forceExpand, analysisId }
                             {scene.sound_design.music.reference && (
                               <div style={{ gridColumn:'1/-1' }}>
                                 <p style={{ fontSize:'0.68rem', color:'var(--text-secondary)', marginBottom:4, textTransform:'uppercase', letterSpacing:'0.06em' }}>Reference</p>
-                                <p style={{ fontSize:'0.85rem', color:'#5eead4', fontWeight:500, fontStyle:'italic' }}>🎵 {scene.sound_design.music.reference}</p>
+                                <p style={{ fontSize:'0.85rem', color:'#F5FFC6', fontWeight:500, fontStyle:'italic' }}>🎵 {scene.sound_design.music.reference}</p>
                               </div>
                             )}
                             {scene.sound_design.music.instruments?.length > 0 && (
@@ -397,14 +397,14 @@ export default memo(function SceneCard({ scene, index, forceExpand, analysisId }
                                 <p style={{ fontSize:'0.68rem', color:'var(--text-secondary)', marginBottom:6, textTransform:'uppercase', letterSpacing:'0.06em' }}>Instrumentation</p>
                                 <div style={{ display:'flex', flexWrap:'wrap', gap:5 }}>
                                   {scene.sound_design.music.instruments.map((ins,i) => (
-                                    <span key={i} className="chip chip-teal">{ins}</span>
+                                    <span key={i} className="chip chip-spice">{ins}</span>
                                   ))}
                                 </div>
                               </div>
                             )}
                             {scene.sound_design.music.emotional_intent && (
                               <div style={{ gridColumn:'1/-1', padding:'10px 14px', background:'rgba(20,184,166,0.08)', borderRadius:8 }}>
-                                <p style={{ fontSize:'0.68rem', color:'#5eead4', marginBottom:4, textTransform:'uppercase', letterSpacing:'0.06em' }}>Emotional Intent</p>
+                                <p style={{ fontSize:'0.68rem', color:'#F5FFC6', marginBottom:4, textTransform:'uppercase', letterSpacing:'0.06em' }}>Emotional Intent</p>
                                 <p style={{ fontSize:'0.83rem', color:'var(--text-secondary)', lineHeight:1.65 }}>{scene.sound_design.music.emotional_intent}</p>
                               </div>
                             )}
@@ -414,10 +414,10 @@ export default memo(function SceneCard({ scene, index, forceExpand, analysisId }
 
                       {/* Editing card */}
                       {scene.sound_design.editing && (
-                        <div style={{ background:'rgba(255, 255, 255,0.05)', border:'1px solid rgba(255, 255, 255,0.2)', borderRadius:12, padding:'20px', borderLeft:'3px solid #ffffff' }}>
+                        <div style={{ background:'rgba(245, 255, 198,0.05)', border:'1px solid rgba(245, 255, 198,0.2)', borderRadius:12, padding:'20px', borderLeft:'3px solid #F5FFC6' }}>
                           <div style={{ display:'flex', alignItems:'center', gap:8, marginBottom:16 }}>
-                            <Scissors size={16} color="#ffffff" />
-                            <span className="font-grotesk" style={{ fontWeight:700, color:'#ffffff', fontSize:'0.88rem', textTransform:'uppercase', letterSpacing:'0.08em' }}>Editing Style</span>
+                            <Scissors size={16} color="#F5FFC6" />
+                            <span className="font-grotesk" style={{ fontWeight:700, color:'#F5FFC6', fontSize:'0.88rem', textTransform:'uppercase', letterSpacing:'0.08em' }}>Editing Style</span>
                           </div>
                           <div style={{ display:'flex', flexDirection:'column', gap:12 }}>
                             {[
@@ -427,14 +427,14 @@ export default memo(function SceneCard({ scene, index, forceExpand, analysisId }
                               { label:'Transition', val: scene.sound_design.editing.transition },
                             ].filter(r => r.val).map(({ label, val }) => (
                               <div key={label} style={{ display:'flex', gap:12, alignItems:'flex-start' }}>
-                                <span style={{ fontSize:'0.72rem', fontWeight:700, color:'#ffffff', minWidth:72, paddingTop:1, textTransform:'uppercase', letterSpacing:'0.06em', flexShrink:0 }}>{label}</span>
+                                <span style={{ fontSize:'0.72rem', fontWeight:700, color:'#F5FFC6', minWidth:72, paddingTop:1, textTransform:'uppercase', letterSpacing:'0.06em', flexShrink:0 }}>{label}</span>
                                 <p style={{ fontSize:'0.83rem', color:'var(--text-secondary)', lineHeight:1.6 }}>{val}</p>
                               </div>
                             ))}
                             {scene.sound_design.editing.pacing_note && (
-                              <div style={{ marginTop:4, padding:'10px 14px', background:'rgba(255, 255, 255,0.08)', borderRadius:8, display:'flex', gap:10, alignItems:'flex-start' }}>
+                              <div style={{ marginTop:4, padding:'10px 14px', background:'rgba(245, 255, 198,0.08)', borderRadius:8, display:'flex', gap:10, alignItems:'flex-start' }}>
                                 <span style={{ fontSize:'1rem', flexShrink:0 }}>💡</span>
-                                <p style={{ fontSize:'0.83rem', color:'#e4e4e7', lineHeight:1.65, fontStyle:'italic' }}>{scene.sound_design.editing.pacing_note}</p>
+                                <p style={{ fontSize:'0.83rem', color:'#F5FFC6', lineHeight:1.65, fontStyle:'italic' }}>{scene.sound_design.editing.pacing_note}</p>
                               </div>
                             )}
                           </div>

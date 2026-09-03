@@ -29,7 +29,7 @@ Unlike generic AI wrappers, ScriptVision acts as a 30-year veteran of global cin
 - **Shot-by-Shot Division**: Automatically breaks scenes into logically motivated shots, complete with camera movement, lens distortion, and psychological purpose.
 - **Sound & Editorial Rhythm**: Generates detailed soundscapes (tempo, instrumentation) and editorial pacing tailored to the scene's tension.
 - **Non-Blocking AI Storyboarding**: Integrates with Hugging Face's `FLUX.1-schnell` model to generate high-fidelity, cinematic storyboard frames.
-- **Premium UI/UX (Minimalist Slate)**: A glassmorphism-inspired dark mode interface built with Framer Motion, featuring our custom *Minimalist Slate* sleek cinematic color palette.
+- **Premium UI/UX (Prussian Spice)**: A glassmorphism-inspired dark mode interface built with Framer Motion, featuring our custom *Prussian Spice* sleek cinematic color palette.
 
 ---
 

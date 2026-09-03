@@ -6,8 +6,8 @@ import { Film, Zap, Camera, Palette, Eye, ChevronRight, Star } from 'lucide-reac
 const features = [
   {
     icon: Film,
-    color: '#ffffff',
-    bg: 'rgba(255, 255, 255,0.12)',
+    color: '#F5FFC6',
+    bg: 'rgba(245, 255, 198,0.12)',
     title: 'Scene Breakdown',
     desc: 'Auto-detect every scene with location, time, and rich description powered by Groq AI.',
   },
@@ -20,28 +20,28 @@ const features = [
   },
   {
     icon: Camera,
-    color: '#a1a1aa',
-    bg: 'rgba(161, 161, 170,0.12)',
+    color: '#5B5941',
+    bg: 'rgba(91, 89, 65,0.12)',
     title: 'Camera Suggestions',
     desc: 'Get shot types, movements, and angles tailored to each scene\'s dramatic needs.',
   },
   {
     icon: Palette,
-    color: '#fbbf24',
+    color: '#F5FFC6',
     bg: 'rgba(251,191,36,0.12)',
     title: 'Visual Style',
     desc: 'Lighting recommendations, color palettes, and cinematic style references per scene.',
   },
   {
     icon: Eye,
-    color: '#14b8a6',
+    color: '#BF3100',
     bg: 'rgba(20,184,166,0.12)',
     title: 'Key Elements',
     desc: 'Extract characters, props, and actions automatically — ready for your production sheet.',
   },
   {
     icon: Star,
-    color: '#22c55e',
+    color: '#5B5941',
     bg: 'rgba(34,197,94,0.12)',
     title: 'Save & Export',
     desc: 'Save analyses to your history and export as JSON or PDF for your crew.',
@@ -70,12 +70,12 @@ export default function LandingPage() {
           style={{
             display: 'inline-flex', alignItems: 'center', gap: 8,
             padding: '6px 16px', borderRadius: 999,
-            background: 'rgba(255, 255, 255,0.15)',
-            border: '1px solid rgba(255, 255, 255,0.35)',
+            background: 'rgba(245, 255, 198,0.15)',
+            border: '1px solid rgba(245, 255, 198,0.35)',
             marginBottom: 28,
           }}
         >
-          <span style={{ fontSize: '0.78rem', color: '#e4e4e7', fontWeight: 600 }}>✦ AI-Powered Cinematic Breakdown</span>
+          <span style={{ fontSize: '0.78rem', color: '#F5FFC6', fontWeight: 600 }}>✦ AI-Powered Cinematic Breakdown</span>
         </motion.div>
 
         <motion.h1
@@ -155,7 +155,7 @@ export default function LandingPage() {
           transition={{ duration: 0.5 }}
           style={{ textAlign: 'center', marginBottom: 56 }}
         >
-          <p style={{ color: '#e4e4e7', fontWeight: 600, fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 12 }}>
+          <p style={{ color: '#F5FFC6', fontWeight: 600, fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 12 }}>
             What You Get
           </p>
           <h2 className="font-grotesk" style={{ fontSize: 'clamp(1.8rem, 3vw, 2.6rem)', fontWeight: 700 }}>
@@ -205,8 +205,8 @@ export default function LandingPage() {
           style={{
             maxWidth: '700px', margin: '0 auto', textAlign: 'center',
             padding: '56px 40px',
-            background: 'linear-gradient(135deg, rgba(255, 255, 255,0.12), rgba(161, 161, 170,0.08))',
-            border: '1px solid rgba(255, 255, 255,0.25)',
+            background: 'linear-gradient(135deg, rgba(245, 255, 198,0.12), rgba(91, 89, 65,0.08))',
+            border: '1px solid rgba(245, 255, 198,0.25)',
             borderRadius: 24,
           }}
         >

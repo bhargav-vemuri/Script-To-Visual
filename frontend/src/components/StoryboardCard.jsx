@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { MapPin, Clock, Camera, Eye, Zap } from 'lucide-react';
 
 const moodColors = [
-  'rgba(255, 255, 255,0.3)', 'rgba(217,95,43,0.3)', 'rgba(245,158,11,0.3)',
+  'rgba(245, 255, 198,0.3)', 'rgba(217,95,43,0.3)', 'rgba(245,158,11,0.3)',
   'rgba(20,184,166,0.3)', 'rgba(59,130,246,0.3)', 'rgba(34,197,94,0.3)',
 ];
 
@@ -62,12 +62,12 @@ export default function StoryboardCard({ scene, index }) {
         {scene.mood?.length > 0 && (
           <div style={{ marginBottom: 10 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 6 }}>
-              <Zap size={12} color="#e4e4e7" />
-              <span style={{ fontSize: '0.68rem', color: '#e4e4e7', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em' }}>Mood</span>
+              <Zap size={12} color="#F5FFC6" />
+              <span style={{ fontSize: '0.68rem', color: '#F5FFC6', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em' }}>Mood</span>
             </div>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 5 }}>
               {scene.mood.slice(0, 3).map((m, i) => (
-                <span key={i} className="chip chip-blue">{m}</span>
+                <span key={i} className="chip chip-ebony">{m}</span>
               ))}
             </div>
           </div>
@@ -77,15 +77,15 @@ export default function StoryboardCard({ scene, index }) {
         {(scene.camera?.shots?.length > 0 || scene.camera?.movement?.length > 0) && (
           <div style={{ marginBottom: 10 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 6 }}>
-              <Camera size={12} color="#a1a1aa" />
-              <span style={{ fontSize: '0.68rem', color: '#a1a1aa', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em' }}>Camera</span>
+              <Camera size={12} color="#5B5941" />
+              <span style={{ fontSize: '0.68rem', color: '#5B5941', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em' }}>Camera</span>
             </div>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 5 }}>
               {scene.camera.shots?.slice(0, 2).map((s, i) => (
-                <span key={i} className="chip chip-blue">{s}</span>
+                <span key={i} className="chip chip-ebony">{s}</span>
               ))}
               {scene.camera.movement?.slice(0, 1).map((m, i) => (
-                <span key={`mv-${i}`} className="chip chip-teal">{m}</span>
+                <span key={`mv-${i}`} className="chip chip-spice">{m}</span>
               ))}
             </div>
           </div>

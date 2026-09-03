@@ -12,7 +12,7 @@ export default function Footer() {
       {/* Glowing top border */}
       <div style={{
         height: 1, width: '100%',
-        background: 'linear-gradient(90deg, transparent, rgba(255, 255, 255,0.5), rgba(161, 161, 170,0.5), transparent)'
+        background: 'linear-gradient(90deg, transparent, rgba(245, 255, 198,0.5), rgba(91, 89, 65,0.5), transparent)'
       }} />
 
       <div style={{
@@ -25,7 +25,7 @@ export default function Footer() {
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
             <div style={{
               width: 34, height: 34, borderRadius: 10,
-              background: 'linear-gradient(135deg, #ffffff, #a1a1aa)',
+              background: 'linear-gradient(135deg, #F5FFC6, #5B5941)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               boxShadow: '0 0 20px rgba(200,146,42,0.25)'
             }}>
@@ -38,11 +38,11 @@ export default function Footer() {
           <div style={{ display: 'flex', gap: 12, marginTop: 4 }}>
             {[Globe, Camera, Mail].map((Icon, i) => (
               <a key={i} href="#" style={{
-                width: 32, height: 32, borderRadius: '50%', background: 'rgba(255,255,255,0.03)',
+                width: 32, height: 32, borderRadius: '50%', background: 'rgba(245, 255, 198,0.03)',
                 border: '1px solid var(--border)', display: 'flex', alignItems: 'center', justifyContent: 'center',
                 color: 'var(--text-secondary)', transition: 'all 0.2s', textDecoration: 'none'
               }}
-              onMouseEnter={e => { e.currentTarget.style.color = '#ffffff'; e.currentTarget.style.borderColor = '#a1a1aa'; }}
+              onMouseEnter={e => { e.currentTarget.style.color = '#F5FFC6'; e.currentTarget.style.borderColor = '#5B5941'; }}
               onMouseLeave={e => { e.currentTarget.style.color = 'var(--text-secondary)'; e.currentTarget.style.borderColor = 'var(--border)'; }}
               >
                 <Icon size={14} />
@@ -54,10 +54,10 @@ export default function Footer() {
         {/* Column 2: The Magic of Cinema */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
           <h4 className="font-grotesk" style={{ color: 'var(--text-primary)', fontSize: '0.95rem', fontWeight: 600, letterSpacing: '0.05em', textTransform: 'uppercase', marginBottom: 2 }}>
-            <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}><Film size={14} color="#ffffff" /> The Magic of Cinema</span>
+            <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}><Film size={14} color="#F5FFC6" /> The Magic of Cinema</span>
           </h4>
           <p style={{ color: 'var(--text-secondary)', fontSize: '0.8rem', lineHeight: 1.65, fontStyle: 'italic' }}>
-            Cinema is a universal language. From the chaotic, raw energy of <span style={{ color: '#d4b483', fontWeight: 500 }}>Fight Club</span> to the tender, poetic love of <span style={{ color: '#d4b483', fontWeight: 500 }}>Sita Ramam</span>. It is the fierce intensity of <span style={{ color: '#d4b483', fontWeight: 500 }}>Aravinda Sametha</span>, the hilarious vulnerabilities of <span style={{ color: '#d4b483', fontWeight: 500 }}>Ante Sundaraniki</span>, the emotional warmth of <span style={{ color: '#d4b483', fontWeight: 500 }}>Hi Nanna</span>, and the patriotic spirit of <span style={{ color: '#d4b483', fontWeight: 500 }}>Major</span>.
+            Cinema is a universal language. From the chaotic, raw energy of <span style={{ color: '#BF3100', fontWeight: 500 }}>Fight Club</span> to the tender, poetic love of <span style={{ color: '#BF3100', fontWeight: 500 }}>Sita Ramam</span>. It is the fierce intensity of <span style={{ color: '#BF3100', fontWeight: 500 }}>Aravinda Sametha</span>, the hilarious vulnerabilities of <span style={{ color: '#BF3100', fontWeight: 500 }}>Ante Sundaraniki</span>, the emotional warmth of <span style={{ color: '#BF3100', fontWeight: 500 }}>Hi Nanna</span>, and the patriotic spirit of <span style={{ color: '#BF3100', fontWeight: 500 }}>Major</span>.
             <br/><br/>
             Whether it's Hollywood framing or Tollywood mass storytelling, cinema connects our shared human experience. We built this tool for the storytellers who keep that magic alive.
           </p>
@@ -72,7 +72,7 @@ export default function Footer() {
               <Link key={label} to={path} style={{
                 color: 'var(--text-secondary)', textDecoration: 'none', fontSize: '0.88rem', transition: 'color 0.2s', width: 'fit-content'
               }}
-              onMouseEnter={e => e.currentTarget.style.color = '#ffffff'}
+              onMouseEnter={e => e.currentTarget.style.color = '#F5FFC6'}
               onMouseLeave={e => e.currentTarget.style.color = 'var(--text-secondary)'}
               >
                 {label}
@@ -83,11 +83,11 @@ export default function Footer() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
             <h4 className="font-grotesk" style={{ color: 'var(--text-primary)', fontSize: '0.8rem', fontWeight: 600, letterSpacing: '0.05em', textTransform: 'uppercase', color: 'var(--text-secondary)' }}>Powered By</h4>
             <div style={{ display: 'flex', gap: 16 }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '8px 12px', background: 'rgba(255,255,255,0.02)', border: '1px solid var(--border)', borderRadius: 8 }}>
-                <Sparkles size={14} color="#ffffff" />
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '8px 12px', background: 'rgba(245, 255, 198,0.02)', border: '1px solid var(--border)', borderRadius: 8 }}>
+                <Sparkles size={14} color="#F5FFC6" />
                 <span style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-primary)' }}>Groq LPU™</span>
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '8px 12px', background: 'rgba(255,255,255,0.02)', border: '1px solid var(--border)', borderRadius: 8 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '8px 12px', background: 'rgba(245, 255, 198,0.02)', border: '1px solid var(--border)', borderRadius: 8 }}>
                 <span style={{ fontSize: '0.85rem' }}>🤗</span>
                 <span style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-primary)' }}>FLUX.1 Schnell</span>
               </div>
@@ -104,7 +104,7 @@ export default function Footer() {
           &copy; {new Date().getFullYear()} ScriptVision. All rights reserved.
         </p>
         <p style={{ color: 'var(--text-secondary)', fontSize: '0.8rem', display: 'flex', alignItems: 'center', gap: 6 }}>
-          Crafted with <Heart size={12} color="#db2777" fill="#db2777" /> for filmmakers
+          Crafted with <Heart size={12} color="#BF3100" fill="#BF3100" /> for filmmakers
         </p>
       </div>
 
