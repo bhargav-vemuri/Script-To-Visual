@@ -46,7 +46,7 @@ export default function Navbar() {
         position: 'sticky',
         top: 0,
         zIndex: 100,
-        background: 'rgba(14, 20, 40,0.85)',
+        background: 'rgba(186, 151, 144,0.85)',
         backdropFilter: 'blur(20px)',
         borderBottom: '1px solid var(--border)',
       }}
@@ -70,7 +70,7 @@ export default function Navbar() {
             borderRadius: 10,
             display: 'flex', alignItems: 'center', justifyContent: 'center',
           }}>
-            <Clapperboard size={18} color="#fff" />
+            <Clapperboard size={18} color="#F5FFC6" />
           </div>
           <span className="font-grotesk" style={{ fontSize: '1.1rem', fontWeight: 700 }}>
             Script<span className="gradient-text">Vision</span>

@@ -3,7 +3,7 @@
 
 /* ─── Design Tokens — Prussian Spice ────────────────────────────────────── */
 :root {
-  --bg-base:      #0E1428;
+  --bg-base:      #BA9790;
   --bg-surface:   #3B0D11;
   --bg-card:      #3B0D11;
   --bg-card2:     #3B0D11;
@@ -142,7 +142,7 @@ body {
   font-weight: 600;
   font-size: 0.95rem;
   background: #F5FFC6;
-  color: #0E1428;
+  color: #BA9790;
   border: none;
   cursor: pointer;
   transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;

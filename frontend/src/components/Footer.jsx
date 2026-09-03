@@ -29,7 +29,7 @@ export default function Footer() {
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               boxShadow: '0 0 20px rgba(200,146,42,0.25)'
             }}>
-              <Clapperboard size={18} color="#fff" />
+              <Clapperboard size={18} color="#F5FFC6" />
             </div>
             <span className="font-grotesk" style={{ fontWeight: 800, fontSize: '1.2rem', letterSpacing: '-0.02em' }}>
               Script<span className="gradient-text">Vision</span>

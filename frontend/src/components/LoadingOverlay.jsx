@@ -43,7 +43,7 @@ export default function LoadingOverlay({ streamContent = '' }) {
       style={{
         position: 'fixed',
         inset: 0,
-        background: 'rgba(14, 20, 40,0.96)',
+        background: 'rgba(186, 151, 144,0.96)',
         backdropFilter: 'blur(16px)',
         zIndex: 1000,
         display: 'flex',

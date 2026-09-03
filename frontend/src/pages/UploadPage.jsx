@@ -89,7 +89,7 @@ export default function UploadPage() {
               margin: '0 auto 20px',
               boxShadow: '0 0 30px rgba(245, 255, 198,0.4)',
             }}>
-              <Clapperboard size={28} color="#fff" />
+              <Clapperboard size={28} color="#F5FFC6" />
             </div>
             <h1 className="font-grotesk gradient-text" style={{ fontSize: '2rem', fontWeight: 700, marginBottom: 8 }}>
               Analyze Your Script

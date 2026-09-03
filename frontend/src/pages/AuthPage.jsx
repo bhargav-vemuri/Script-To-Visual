@@ -53,7 +53,7 @@ export default function AuthPage() {
             margin: '0 auto 16px',
             boxShadow: '0 0 30px rgba(245, 255, 198,0.4)',
           }}>
-            <Film size={28} color="#fff" />
+            <Film size={28} color="#F5FFC6" />
           </div>
           <h1 className="font-grotesk" style={{ fontSize: '1.8rem', fontWeight: 700, marginBottom: 8 }}>
             {isLogin ? 'Welcome Back' : 'Create Account'}
