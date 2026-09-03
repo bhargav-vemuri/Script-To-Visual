@@ -1,28 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
-/* ─── Design Tokens — Prussian Spice ────────────────────────────────────── */
+/* ─── Design Tokens — Cinematic Spice ────────────────────────────────────── */
 :root {
-  --bg-base:      #BA9790;
-  --bg-surface:   #3B0D11;
-  --bg-card:      #3B0D11;
-  --bg-card2:     #3B0D11;
-  --border:       #5B5941;
-  --border-glow:  #BF3100;
-  --text-primary: #F5FFC6;
-  --text-secondary: #5B5941;
-  --accent-primary: #F5FFC6;
-  --accent-muted: #5B5941;
-  --accent-blue:  #BF3100;
-  --accent-teal:  #BF3100;
-  --accent-green: #5B5941;
+  --bg-base:      #3B0D11; /* Deep Rich Mahogany */
+  --bg-surface:   #2a0709; /* Darker Mahogany */
+  --bg-card:      rgba(14, 20, 40, 0.4); /* Prussian Blue */
+  --bg-card2:     rgba(14, 20, 40, 0.6);
+  --border:       rgba(186, 151, 144, 0.2); /* Rosy Taupe */
+  --border-glow:  #BF3100; /* Rusty Spice */
+  --text-primary: #F5FFC6; /* Cream */
+  --text-secondary: #BA9790; /* Rosy Taupe */
+  --accent-primary: #BF3100; /* Rusty Spice */
+  --accent-muted: #5B5941; /* Ebony */
 }
 
 /* ─── Reset / Base ─────────────────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
 html { scroll-behavior: smooth; }
-
 body {
   font-family: 'Inter', sans-serif;
   background-color: var(--bg-base);
@@ -41,22 +36,22 @@ body {
 .font-grotesk { font-family: 'Space Grotesk', sans-serif; }
 
 .gradient-text {
-  background: linear-gradient(to right, #F5FFC6, #5B5941);
+  background: linear-gradient(to right, #F5FFC6, #BA9790);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .gradient-text-blue {
-  background: linear-gradient(135deg, #F5FFC6, #5B5941, #5B5941);
+  background: linear-gradient(135deg, #BF3100, #BA9790);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .glow-gold, .glow-purple, .glow-violet {
-  box-shadow: 0 0 30px rgba(245, 255, 198, 0.05),
-              0 0 60px rgba(245, 255, 198, 0.02);
+  box-shadow: 0 0 30px rgba(191, 49, 0, 0.15),
+              0 0 60px rgba(191, 49, 0, 0.05);
 }
 
 .card-base {
@@ -70,7 +65,7 @@ body {
 }
 .card-hover:hover {
   border-color: var(--border-glow);
-  box-shadow: 0 4px 20px rgba(245, 255, 198, 0.02);
+  box-shadow: 0 4px 20px rgba(191, 49, 0, 0.1);
   transform: translateY(-2px);
 }
 
@@ -85,11 +80,11 @@ body {
   opacity: 0.25;
 }
 
-/* Animated gradient background — Prussian Spice */
+/* Animated gradient background */
 .hero-bg {
   background:
-    radial-gradient(ellipse 60% 50% at 50% -10%, rgba(245, 255, 198, 0.05) 0%, transparent 80%),
-    radial-gradient(ellipse 40% 40% at 80% 80%, rgba(245, 255, 198, 0.02) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 50% -10%, rgba(191, 49, 0, 0.12) 0%, transparent 80%),
+    radial-gradient(ellipse 40% 40% at 80% 80%, rgba(186, 151, 144, 0.08) 0%, transparent 60%),
     var(--bg-base);
 }
 
@@ -105,31 +100,9 @@ body {
   border: 1px solid transparent;
 }
 
-.chip-cream {
-  background: rgba(245, 255, 198, 0.05);
-  border-color: rgba(245, 255, 198, 0.1);
-  color: #F5FFC6;
-}
-.chip-ebony {
-  background: rgba(245, 255, 198, 0.03);
-  border-color: rgba(245, 255, 198, 0.08);
-  color: #5B5941;
-}
-.chip-ebony {
-  background: rgba(245, 255, 198, 0.08);
-  border-color: rgba(245, 255, 198, 0.15);
-  color: #F5FFC6;
-}
-.chip-spice {
-  background: rgba(20, 184, 166, 0.1);
-  border-color: rgba(20, 184, 166, 0.2);
-  color: #F5FFC6;
-}
-.chip-spice {
-  background: rgba(34, 197, 94, 0.1);
-  border-color: rgba(34, 197, 94, 0.2);
-  color: #F5FFC6;
-}
+.chip-cream { background: rgba(245, 255, 198, 0.05); border-color: rgba(245, 255, 198, 0.1); color: #F5FFC6; }
+.chip-ebony { background: rgba(91, 89, 65, 0.15); border-color: rgba(91, 89, 65, 0.3); color: #F5FFC6; }
+.chip-spice { background: rgba(191, 49, 0, 0.15); border-color: rgba(191, 49, 0, 0.3); color: #F5FFC6; }
 
 /* ─── Buttons ──────────────────────────────────────────────────────────────── */
 .btn-primary {
@@ -141,17 +114,17 @@ body {
   border-radius: 8px;
   font-weight: 600;
   font-size: 0.95rem;
-  background: #F5FFC6;
-  color: #BA9790;
+  background: #BF3100;
+  color: #F5FFC6;
   border: none;
   cursor: pointer;
   transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
-  box-shadow: 0 4px 14px rgba(245, 255, 198, 0.1);
+  box-shadow: 0 4px 14px rgba(191, 49, 0, 0.2);
 }
 .btn-primary:hover:not(:disabled) {
   opacity: 0.9;
   transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(245, 255, 198, 0.15);
+  box-shadow: 0 6px 20px rgba(191, 49, 0, 0.35);
 }
 .btn-primary:disabled {
   opacity: 0.5;
@@ -177,7 +150,7 @@ body {
 .btn-secondary:hover {
   border-color: var(--border-glow);
   color: var(--text-primary);
-  background: rgba(245, 255, 198, 0.05);
+  background: rgba(191, 49, 0, 0.08);
 }
 
 /* ─── Loading Spinner ──────────────────────────────────────────────────────── */
